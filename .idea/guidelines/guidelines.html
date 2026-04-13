@@ -5,18 +5,46 @@
     <title>Guidelines</title>
 </head>
 <body>
+
 <h1>Guidelines to access social media API use</h1> <!--  -->
-<p></p> <!-- Description of the page -->
+
+<!-- DESCRIPTION OF THE PAGE  -->
+<p>This page is dedicated to explaining what APIs can and cannot do. It is divided in five main parts:  </p>
+<ol>
+    <li><a href="#api-definition">What are APIs</a></li>
+    <li><a href="api-data">What kind of data expect from APIs</a>
+    </li><li><a href="#api-access">How to access APIs</a></li>
+    <li><a href="#api-limitations">Which limitations to consider</a></li>
+    <li><a href="#api-links">Useful links</a></li>
+</ol>
+
+<!-- 1. API DEFINITION  -->
+<h2 id = "api-definition">1. APIs defnition</h2>
 <p>
-    Before starting the request process of APIs, be aware of certain limitations that can hinder research projects.
-    <br>Social media APIs aren’t always accurate: some experiments have shown that APIs don’t always contain all posts that are shown to users. For example, data from profiles that are deleted or that have become private are removed from the API, as well as data deleted from content moderation.
-    <br>Moreover, information is often updated on a daily or bidaily basis, which can hinder the metadata accuracy.
-    <br>Also, keep in mind that the analyses pursued on the data are only possible in VCE (Virtual Compute Environment), meaning that analyses can’t be done outside of the tools provided by the platform. Sometimes, it is no ware than a keyword analysis.
-    <br>In the same idea, it is also impossible to download the data to run our proper analyses. This phenomenon also impedes reproducibility of research.
+    An API, for Application Programming Interface, is a tool provided by online platforms to allow users to get data from a website in a machine-readable format.
+    <br> For research purposes, social media APIs can be a valuable source of information, by providing researchers with important amounts of data, easily accessible and outside any legal consideration.
+</p>
 
-</p> <!-- Difficulties of getting access to API -->
 
-<!-- INFORMATION ON SYSTEMIC RISKS -->
+<!-- 2. API DATA -->
+<h2 id = "api-data">2. What kind of data expect from an API?</h2>
+<p></p>
+
+<!-- 3. ACCESS TO APIs -->
+<h2 id = "api-access">3. How to access APIs?</h2>
+
+    <!-- DIFFICULTIES -->
+<h3>3.1 Difficulties of getting an social media API acces</h3>
+<p>Nowadays, social media platforms are restricting their free access to their APIs, preferring giving it behind a paywall.</p>
+
+        <!-- VLOPS EXCEPTONS -->
+<h3>3.2 Special treatments of VLOPs</h3>
+<p>Under the DSA Article 40(12), platforms having at least 45 millions of users a month (which equals approximatively 10% of the European citizens) have to give access without undue delay to researchers studying systemic risks within the European Union. The social media falling in this category are Facebook, Instagram, LinkedIn, Pinterest, Snapchat, TikTok, X and YouTube.
+
+    <br>Unfortunately, getting access to these APIs, even for researchers studying systemic risks, is a difficult journey. Platforms usually expect from researchers to be able to fulfil certain requirements, that vary from one platform to another. Besides the notion of systemic risks, researchers have also to prove that they can handle personal data protection.
+</p>
+
+         <!-- INFORMATION ON SYSTEMIC RISKS -->
 <details>
     <summary>Learn more about systemic risks</summary>
     <p>Systemic risks are defined in the Article 34(1) of the DSA and are the following:</p>
@@ -28,7 +56,7 @@
     </ul>
 </details>
 
-<!-- INFORMATION ON DATA PROTECTION MEASURES -->
+         <!-- INFORMATION ON DATA PROTECTION MEASURES -->
 <details>
     <summary>Learn more about data protection measures</summary>
     <p>Data protection measures are explained in the Delegated Act on the DSA</p>
@@ -39,13 +67,41 @@
     </ul>
 </details>
 
-<!-- DOWNLOAD DSA -->
+            <!-- DOWNLOAD DSA -->
 <a href="DSA.pdf" download="DSA.pdf">Download the DSA</a>
+
+
+
+            <!-- OTHER SOCIAL MEDIA -->
+<h3>3.3 Other social media</h3>
+<p> Smaller platforms are not bound by the DSA to give access to their API to researchers. It is then up to them to grant such access freely. Most of them don’t, except Bluesky which serves as a basis in this website. </p>
+
+<!-- 4. APIs LIMITATIONS  -->
+<h2 id ="api-limitations">4. APIs limitations</h2>
+
+<p>
+    Before starting the request process of APIs, be aware of certain limitations that can hinder research projects.
+</p>
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+
 
 <p></p> <!-- Limitations of APIs accuracy  -->
 
-<h2>Very Large Online Platforms (VLOPs)</h2> <!-- Special state of VLOPs -->
-<p></p> <!-- Table with hyperlinks to VLOPs API documentation and forms to request the API access-->
+<!-- 5. USEFUL LINKS  -->
+<h2 id ="api-links">5. Useful links</h2>
+
+    <!-- VLOPs  -->
+<h3>Very Large Online Platforms</h3>
+<p>In the table below, you can find pages related to social media data dictionaries and request forms under the DSA 40(12). </p>
 <table border="1">
     <thead>
     <tr>
@@ -98,16 +154,17 @@
     </tbody>
 </table>DS
 
-<h2>Other social media</h2> <!-- Issues that occur with smaller platforms -->
-<h3>Accessibility issues </h3>
-<p> Smaller platforms are not bound by the DSA to give access to their API to researchers. It is then up to them to grant such access freely. Most of them don’t, except Bluesky which serves as a basis in this website. This totally opened access can help researchers by showing them what is possible to do with a social media API. </p>
-
-<h3>Links to other social media APIs</h3>
+    <!-- VLOPs  -->
+<h3>Other social media</h3>
 <p>Here you can find data dictionaries for social media that are not considered as VLOPs. There are no links to request forms as the accessibility to their API is totally let to their will. </p> <!-- Also some links to APIs and documentation (at least Reddit and Bluesky) -->
-<p><a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Bluesky</a></p>
-<p><a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Reddit</a></p>
+<ul>
+    <li><a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Bluesky</a></li>
+    <li><a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Reddit</a></li>
 
-<p></p> <!-- End of page. Go to the other to see what's possible with an API -->
+</ul>
+
+<!-- END OF PAGE + LINK TO OTHER PAGE-->
+<p></p>
 
 </body>
 </html>
