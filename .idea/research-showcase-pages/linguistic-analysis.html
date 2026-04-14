@@ -5,6 +5,26 @@
     <title>Linguistic analysis of posts</title>
 </head>
 <body>
+<textarea id="sentence" name="sentence" placeholder="Write your sentence here..." rows="5" cols="33">
+</textarea>
+<button onclick="analyzeSent()">Analyze sentence</button>
+
+
+<div id="sentAnalysis"></div>
+<script>
+    async function analyzeSent() {
+        const sentence = document.getElementById('sentence').value.trim();
+        const apiURL = `https://lindat.mff.cuni.cz/services/udpipe/api/process?tokenizer&tagger&parser&data=${encodeURIComponent(sentence)}`;
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        const analysis = data.result;
+
+        document.getElementById('sentAnalysis').innerHTML = `
+        <p> The analyzed sentence: </p>
+        <p>${analysis}</p>`;
+    }
+</script>
 
 </body>
 </html>
+
