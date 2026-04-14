@@ -3,8 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <title>Demographic search</title>
-</head>
+
 <body>
+
+<h1>Analyzing the demographics of users</h1>
+<!-- Introduction text -->
+<p>One of the things you can do as a part of social media analysis is to analyze <a href="https://socialsci.libretexts.org/Bookshelves/Communication/Public_Speaking/Exploring_Public_Speaking_4e_(Barton_and_Tucker)/02%3A_Audience_Analysis_and_Listening/2.02%3A_Demographic_Characteristics">demographic characteristics</a> of the users or people mentioned in posts, such as age, gender or nationality. This can be useful to better understand which parts of the population are linked to the phenomonenon you are exploring.</p>
+
+<p>While you could get the info for this from user metadata directly, let's assume you do not have access to it (which is most often the case) and you want to find it out by <b>using their names</b>. In order to do this, we will use three APIs by the Danish company <i>Demografix ApS</i> to get a prediction of a person's gender, nationality and age just by using their name.</p>
+
+
+<h2>Check the name!</h2>
+<p>Let's see how it works. Type in a name and see which results will you get.</p>
+<!-- create a button and an input box -->
+<input type="text" id="nameInput" placeholder="Enter a name">
+<button onclick="checkName()">Check the name!</button>
+<div id="nameResults"></div>
+
+<script>
+    async function checkName() {
+        const name = document.getElementById('nameInput').value.trim();
+        const apiURL = `https://api.nationalize.io/?name=${encodeURIComponent(name)}`;
+        const response = await fetch(apiURL);
+        const data = await response.json();
+        const countries = data.country;
+
+        document.getElementById('nameResults').innerHTML = `
+    <h3>Results for ${data.name}:</h3>
+    <table>
+        <thead>
+            <tr>
+            <th>Nationality</th>
+            <th>Probability</th>
+</tr>
+</thead>
+<tbody>
+    ${countries.map(country => `
+  <tr>
+    <td>${country.country_id}</td>
+    <td>${(country.probability * 100).toFixed(2)}%</td>
+  </tr>
+`).join('')}
+</tbody>
+</table>
+`;
+    }
+</script>
 
 </body>
 </html>
