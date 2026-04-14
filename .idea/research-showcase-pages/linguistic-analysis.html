@@ -5,8 +5,13 @@
     <title>Linguistic analysis of posts</title>
 </head>
 <body>
+<h1>Linguistic analysis of posts</h1>
+<p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through it's <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>.
+
+<h2>Analyze your post!</h2>
 <textarea id="sentence" name="sentence" placeholder="Write your sentence here..." rows="5" cols="33">
 </textarea>
+
 <button onclick="analyzeSent()">Analyze sentence</button>
 
 
@@ -24,7 +29,7 @@
         <p>${analysis}</p>`;
     }
 </script>
-
+<h2>How does it work?</h2>
 </body>
 </html>
 
