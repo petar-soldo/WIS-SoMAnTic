@@ -23,13 +23,30 @@
 <script>
     async function checkName() {
         const name = document.getElementById('nameInput').value.trim();
-        const apiURL = `https://api.nationalize.io/?name=${encodeURIComponent(name)}`;
-        const response = await fetch(apiURL);
-        const data = await response.json();
-        const countries = data.country;
+        <!-- Connect to the nationalize.io API and fetch data -->
+        const apiURLNat= `https://api.nationalize.io/?name=${encodeURIComponent(name)}`;
+        const responseNat= await fetch(apiURLNat);
+        const dataNat= await responseNat.json();
+        const countries = dataNat.country;
+
+        <!-- Connect to the genderize.io API and fetch data -->
+        const apiURLGen= `https://api.genderize.io/?name=${encodeURIComponent(name)}`;
+        const responseGen= await fetch(apiURLGen);
+        const dataGen= await responseGen.json();
+        const gender = dataGen.gender;
+
+        <!-- Connect to the agify.io API and fetch data -->
+        const apiURLAge= `https://api.agify.io/?name=${encodeURIComponent(name)}`;
+        const responseAge= await fetch(apiURLAge);
+        const dataAge= await responseAge.json();
+        const age = dataAge.age;
 
         document.getElementById('nameResults').innerHTML = `
-    <h3>Results for ${data.name}:</h3>
+    <h3>Results for ${name}:</h3>
+    <ul>
+    <li>Gender: ${gender}</li>
+    <li>Age; ${age}</li>
+</ul>
     <table>
         <thead>
             <tr>
