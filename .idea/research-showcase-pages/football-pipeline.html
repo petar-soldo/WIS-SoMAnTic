@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>The foootball pipeline</title>
+    <title>The foooooootball pipeline</title>
 </head>
 <body>
 <p>Select a league</p>
 <select name="league" id="league">
-    <option value="4328">English Premier League</option>
-    <option value="4337">Dutch Eredivisie</option>
-    <option value="4338">Belgian Pro League</option>
-    <option value="4335">Spanish La Liga</option>
-    <option value="4332">Italian Serie A</option>
-    <option value="4331">German Bundesliga</option>
+    <option value="4328">Premier League</option>
+    <option value="4337">Eredivisie</option>
+    <option value="4338">Pro League</option>
+    <option value="4335">La Liga</option>
+    <option value="4332">Serie A</option>
+    <option value="4331">Bundesliga</option>
+    <option value="4629">Croatian First Football League</option>
+    <option value="4336">Σούπερ Λιγκ 1</option>
+    <option value="4359">Chinese Super Lague</option>
 </select>
 <button onclick="fetchFootballData()">Get Football Data</button>
 <div id="result"></div>
@@ -20,13 +23,22 @@
 <script>
     async function fetchFootballData() {
         const league = document.getElementById('league').value;
-        const apiUrl = `https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=${league}`;
+        const apiUrlTable = `https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=${league}`;
+        const apiUrlLeague = `https://www.thesportsdb.com/api/v1/json/123/lookupleague.php?id=${league}`;
 
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        const teamNames = data.table.map(team => team.strTeam);
+        const responseLeague = await fetch(apiUrlLeague);
+        const dataLeague = await responseLeague.json();
+        const leagueName = dataLeague.leagues[0].strLeague
+        const badge = dataLeague.leagues[0].strBadge
 
-        document.getElementById('result').innerHTML = `<ol>${teamNames.map(teamName => `<li>${teamName}</li>`).join('')}</ol>`;
+        const responseTable = await fetch(apiUrlTable);
+        const dataTable = await responseTable.json();
+        const teamNames = dataTable.table.map(team => team.strTeam);
+
+        document.getElementById('result').innerHTML = `<h3>${leagueName}</h3>
+        <img src="${badge}" alt="${leagueName} badge">
+        <p>Here are top five teams in the league currently:</p>
+        <ol>${teamNames.map(teamName => `<li>${teamName}</li>`).join('')}</ol>`;
         };
 </script>
 </body>
