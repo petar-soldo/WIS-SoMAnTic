@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Linguistical analysis of posts</title>
+    <style>
+
+    </style>
 </head>
 <body>
 <h1>Linguistic analysis of posts</h1>
@@ -75,7 +78,7 @@
             }
 
             document.getElementById('sentAnalysis').innerHTML = `
-        <h3>Results for: ${(sentence)}</h3>
+        <h3>Results for: <strong>${(sentence)}</strong></h3>
 
 
         <table border="1" cellpadding="6" cellspacing="0">
@@ -96,16 +99,16 @@
           <tbody>
             ${rows.map(row => `
               <tr>
-                <td>${escapeHtml(row[0])}</td>
-                <td>${escapeHtml(row[1])}</td>
-                <td>${escapeHtml(row[2])}</td>
-                <td>${escapeHtml(row[3])}</td>
-                <td>${escapeHtml(row[4])}</td>
-                <td>${escapeHtml(row[5])}</td>
-                <td>${escapeHtml(row[6])}</td>
-                <td>${escapeHtml(row[7])}</td>
-                <td>${escapeHtml(row[8])}</td>
-                <td>${escapeHtml(row[9])}</td>
+                <td>${row[0]}</td>
+                <td>${row[1]}</td>
+                <td>${row[2]}</td>
+                <td>${row[3]}</td>
+                <td>${row[4]}</td>
+                <td>${row[5]}</td>
+                <td>${row[6]}</td>
+                <td>${row[7]}</td>
+                <td>${row[8]}</td>
+                <td>${row[9]}</td>
               </tr>
             `).join('')}
           </tbody>
