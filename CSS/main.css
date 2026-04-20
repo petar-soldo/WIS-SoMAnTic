@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+    --kul-dark-blue: #00407A;
+    --kul-sedona-blue: #1D8DB0;
+    --kul-light-blue: #52BDEC;
+    --kul-accent-orange: #DD8A2E;
+    --kul-bg-attention: #E8F5F6;
+
+    --kul-text: #333333;
+    --kul-bg-page: #FFFFFF;
+    --kul-border: #E3E3E3;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--kul-text);
+    background-color: var(--kul-bg-page);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/*typography*/
+h1, h2, h3, h4, h5, h6 {
+    color: var(--kul-dark-blue);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.2rem;
+    border-bottom: 3px solid var(--kul-sedona-blue);
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.6rem;
+}
+
+p, ul, ol, li {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--kul-sedona-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+a:hover, a:focus {
+    text-decoration: underline;
+    color: var(--kul-accent-orange);
+}
+
+/* Forms, Inputs, and Buttons */
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--kul-border);
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 1rem;
+    display: block;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--kul-sedona-blue);
+    outline: none;
+}
+
+textarea {
+    max-width: 100%;
+    resize: vertical;
+}
+
+button {
+    background-color: var(--kul-sedona-blue);
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 20px;
+}
+
+button:hover, button:focus {
+    background-color: var(--kul-dark-blue);
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    background-color: #ffffff;
+}
+
+thead {
+    background-color: var(--kul-dark-blue);
+    color: #ffffff;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid var(--kul-border);
+}
+
+/* Alternating row colors matching standard Plone layout */
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: var(--kul-bg-attention);
+}
+
+/* Details and Summaries (Dropdowns)*/
+details {
+    background-color: #fcfcfc;
+    border: 1px solid var(--kul-border);
+    border-radius: 2px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+}
+
+summary {
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--kul-dark-blue);
+    outline: none;
+}
+
+details p, details ul {
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+/* Dynamic Results Areas (Attention Boxes) */
+#nameResults, #result, #sentAnalysis {
+    margin-top: 25px;
+    padding: 20px 25px;
+    background-color: var(--kul-bg-attention);
+    border-left: 5px solid var(--kul-dark-blue);
+}
+
+#nameResults h3, #result h3, #sentAnalysis h3 {
+    margin-top: 0;
+    color: var(--kul-dark-blue);
+}
