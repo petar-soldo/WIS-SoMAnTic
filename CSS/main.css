@@ -25,16 +25,27 @@ body {
     margin: 0 auto;
     padding: 40px 20px;
 }
-
+.page-layout {
+    display: flex;
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+    width: 100%;
+    align-items: start;
+}
+.main-content{
+    width: 100%;
+    max-width: 800px;
+}
 /*typography*/
 h1, h2, h3, h4, h5, h6 {
-    color: var(--kul-dark-blue);
+    color: darkblue;
     margin-top: 1.5em;
     margin-bottom: 0.5em;
     font-weight: 700;
 }
 
 h1 {
+    color: darkblue;
     font-size: 2.2rem;
     border-bottom: 3px solid var(--kul-sedona-blue);
     padding-bottom: 10px;
@@ -166,4 +177,38 @@ details p, details ul {
 #nameResults h3, #result h3, #sentAnalysis h3 {
     margin-top: 0;
     color: var(--kul-dark-blue);
+}
+
+.contents-sidebar {
+    position: fixed;
+    top: 120px;
+    left: 40px;
+    width: 220px;
+}
+
+.contents-sidebar nav {
+    background-color: var(--kul-bg-attention);
+    border-left: 4px solid var(--kul-sedona-blue);
+    border-radius: 0 6px 6px 0;
+    padding: 16px 18px;
+}
+.contents-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--kul-dark-blue);
+    margin: 0 0 10px;
+}
+
+.contents-sidebar ol {
+    margin: 0;
+    padding-left: 18px;
+    position: sticky;
+    align-self: start;
+}
+
+.contents-sidebar li {
+    margin-bottom: 8px;
+    font-size: 0.88rem;
 }
