@@ -112,7 +112,8 @@ This project integrates several third-party APIs to demonstrate data retrieval a
 * **Course:** Web Information Systems
 * **Academic Year:** 2025-2026
 * **Group:** G7 - "Almost Belgian"
-* **Members:** * Victor Close (r1042528)
+* **Members:**
+    * Victor Close (r1042528)
     * Aïcha David (r0833392)
     * Lisa D'Hoore (r1109614)
     * Petar Soldo (r1076709)
