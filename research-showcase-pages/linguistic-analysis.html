@@ -6,6 +6,32 @@
     <link rel="stylesheet" href="../CSS/main.css">
 </head>
 <body>
+<header class="kul-header">
+
+    <div class="kul-top-bar">
+        <div class="kul-logo-container">
+            <a href="../index.html" class="kul-logo">KU LEUVEN</a>
+        </div>
+        <div class="kul-top-right">
+            <div class="kul-search-box">
+                <input type="text" placeholder="Zoeken in SoMAnTic">
+                <span style="font-size: 1.2rem;">⚲</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="kul-main-nav">
+        <ul class="kul-nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
+            <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
+            <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
+            <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
+            <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
+        </ul>
+    </nav>
+
+</header>
 <h1>Linguistic analysis of posts</h1>
 <p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through it's <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>.
 

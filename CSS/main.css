@@ -223,3 +223,122 @@ details p, details ul {
     width: 20px;
     height: 20px;
 }
+/* KU Leuven Official 2-Tier Header */
+.kul-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Top Tier (Dark Blue) */
+.kul-top-bar {
+    background-color: var(--kul-dark-blue);
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.kul-logo-container {
+    background-color: var(--kul-sedona-blue);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.kul-logo {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.kul-logo:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.kul-top-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.kul-search-box {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    padding: 4px 10px;
+    display: flex;
+    align-items: center;
+}
+
+.kul-search-box input {
+    background: transparent;
+    border: none;
+    color: white;
+    margin-bottom: 0;
+    padding: 4px;
+    width: 200px;
+}
+
+.kul-search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.kul-search-box input:focus {
+    outline: none;
+    border: none;
+}
+
+/* Bottom Tier (White with blue text) */
+.kul-main-nav {
+    background-color: #ffffff;
+    border-bottom: 1px solid var(--kul-border);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centers the links like in the picture */
+}
+
+.kul-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 40px; /* Space between links */
+}
+
+.kul-nav-list a {
+    color: var(--kul-dark-blue);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 10px 0;
+    transition: color 0.2s ease;
+}
+
+.kul-nav-list a:hover {
+    color: var(--kul-accent-orange);
+    text-decoration: none;
+}
+
+/* Make sure the page content is pushed down far enough so the taller header doesn't cover it */
+body {
+    padding-top: 140px !important;
+}
+
+/* Fix for mobile screens */
+@media (max-width: 768px) {
+    .kul-search-box { display: none; }
+    .kul-nav-list { gap: 15px; font-size: 0.9rem; }
+}
