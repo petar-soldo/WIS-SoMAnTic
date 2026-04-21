@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About SoMAnTic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/main.css">
+</head>
+<body>
+
+<header class="kul-header">
+    <div class="kul-top-bar">
+        <div class="kul-logo-container"><a href="../index.html" class="kul-logo">KU LEUVEN</a></div>
+        <div class="kul-top-right">
+            <div class="kul-search-box">
+                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
+                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
+            </div>
+        </div>
+    </div>
+    <nav class="kul-main-nav">
+        <ul class="kul-nav-list">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
+            <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
+            <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
+            <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
+            <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="container mt-5 mb-5">
+
+    <h1 style="color: var(--kul-dark-blue); border-bottom: 3px solid var(--kul-sedona-blue); padding-bottom: 10px;">About SoMAnTic</h1>
+    <p class="lead mt-3">SoMAnTic (Social Media Analytics Tutorial) is a tutorial-like website aimed at showcasing various approaches to and possibilities of social media analytics.</p>
+
+    <h2 class="mt-5">Project Description</h2>
+    <p>The platform is intended for researchers and curious individuals of varying backgrounds who are interested in analyzing social media posts, particularly from a linguistic perspective using APIs. The website is structured into two major sections: Guidelines and Live Query Showcases.</p>
+
+    <h2 class="mt-5">Motivation</h2>
+    <p>Accessing social media data is crucial for research today, as these platforms serve as an echo chamber of society. Because APIs represent the most direct route, this project focuses heavily on them. Recognizing that researchers may not fully understand what a platform API can offer, we aim to spare them the burdensome request process if it is unnecessary by providing an overview of tools to use platform APIs effectively.</p>
+
+    <h2 class="mt-5">The Team</h2>
+    <p>This project was created for the Web Information Systems course at KU Leuven by Group G7 ("Almost Belgian"):</p>
+    <ul>
+        <li>Victor Close (r1042528)</li>
+        <li>Aïcha David (r0833392)</li>
+        <li>Lisa D'Hoore (r1109614)</li>
+        <li>Petar Soldo (r1076709)</li>
+    </ul>
+
+</div>
+
+<script>
+    function performSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        if (!query) return;
+        const searchRoutes = {
+            'demographic': '../research-showcase-pages/demographics.html', 'age': '../research-showcase-pages/demographics.html',
+            'linguistic': '../research-showcase-pages/linguistic-analysis.html', 'language': '../research-showcase-pages/linguistic-analysis.html',
+            'bluesky': '../research-showcase-pages/bluesky-keywords.html', 'football': '../research-showcase-pages/football-pipeline.html',
+            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': '../research-showcase-pages/about.html'
+        };
+        for (const keyword in searchRoutes) {
+            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
+        }
+        alert('No exact modules found for: "' + query + '"');
+    }
+    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
+</script>
+
+</body>
+</html>

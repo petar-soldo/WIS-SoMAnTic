@@ -3,97 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <title>Demographic search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/main.css">
 </head>
 <body>
 <header class="kul-header">
-
     <div class="kul-top-bar">
         <div class="kul-logo-container">
             <a href="../index.html" class="kul-logo">KU LEUVEN</a>
         </div>
         <div class="kul-top-right">
             <div class="kul-search-box">
-                <input type="text" placeholder="Zoeken in SoMAnTic">
-                <span style="font-size: 1.2rem;">⚲</span>
+                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
+                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
             </div>
         </div>
     </div>
-
     <nav class="kul-main-nav">
         <ul class="kul-nav-list">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
-            <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
+            <li><a href="bluesky-keywords.html">BlueSky</a></li>
+            <li><a href="demographics.html">Demographics</a></li>
+            <li><a href="linguistic-analysis.html">Linguistics</a></li>
+            <li><a href="football-pipeline.html">Football</a></li>
         </ul>
     </nav>
-
 </header>
-<h1>Analyzing the demographics of users</h1>
-<!-- Introduction text -->
-<p>One of the things you can do as a part of social media analysis is to analyze <a href="https://socialsci.libretexts.org/Bookshelves/Communication/Public_Speaking/Exploring_Public_Speaking_4e_(Barton_and_Tucker)/02%3A_Audience_Analysis_and_Listening/2.02%3A_Demographic_Characteristics">demographic characteristics</a> of the users or people mentioned in posts, such as age, gender or nationality. This can be useful to better understand which parts of the population are linked to the phenomonenon you are exploring.</p>
 
-<p>While you could get the info for this from user metadata directly, let's assume you do not have access to it (which is most often the case) and you want to find it out by <b>using their names</b>. In order to do this, we will use three APIs by the Danish company <i>Demografix ApS</i> to get a prediction of a person's gender, nationality and age just by using their name.</p>
+<div class="container mt-5 mb-5">
+    <h1>Analyzing the demographics of users</h1>
+    <p>One of the things you can do as a part of social media analysis is to analyze <a href="https://socialsci.libretexts.org/Bookshelves/Communication/Public_Speaking/Exploring_Public_Speaking_4e_(Barton_and_Tucker)/02%3A_Audience_Analysis_and_Listening/2.02%3A_Demographic_Characteristics" target="_blank">demographic characteristics</a> of the users or people mentioned in posts, such as age, gender or nationality. This can be useful to better understand which parts of the population are linked to the phenomonenon you are exploring.</p>
 
+    <p>While you could get the info for this from user metadata directly, let's assume you do not have access to it (which is most often the case) and you want to find it out by <b>using their names</b>. In order to do this, we will use three APIs by the Danish company <i>Demografix ApS</i> to get a prediction of a person's gender, nationality and age just by using their name.</p>
 
-<h2>Check the name!</h2>
-<p>Let's see how it works. Type in a name and see which results will you get.</p>
-<!-- create a button and an input box -->
-<input type="text" id="nameInput" placeholder="Enter a name">
-<button onclick="checkName()">Check the name!</button>
-<div id="nameResults"></div>
+    <h2>Check the name!</h2>
+    <p>Let's see how it works. Type in a name and see which results will you get.</p>
+
+    <input type="text" id="nameInput" placeholder="Enter a name">
+    <button onclick="checkName()">Check the name!</button>
+    <div id="nameResults"></div>
+</div>
 
 <script>
     async function checkName() {
         const name = document.getElementById('nameInput').value.trim();
-        <!-- Connect to the nationalize.io API and fetch data -->
+        if (!name) return;
+
         const apiURLNat= `https://api.nationalize.io/?name=${encodeURIComponent(name)}`;
         const responseNat= await fetch(apiURLNat);
         const dataNat= await responseNat.json();
         const countries = dataNat.country;
 
-        <!-- Connect to the genderize.io API and fetch data -->
         const apiURLGen= `https://api.genderize.io/?name=${encodeURIComponent(name)}`;
         const responseGen= await fetch(apiURLGen);
         const dataGen= await responseGen.json();
         const gender = dataGen.gender;
 
-        <!-- Connect to the agify.io API and fetch data -->
         const apiURLAge= `https://api.agify.io/?name=${encodeURIComponent(name)}`;
         const responseAge= await fetch(apiURLAge);
         const dataAge= await responseAge.json();
         const age = dataAge.age;
 
         document.getElementById('nameResults').innerHTML = `
-    <h3>Results for ${name}:</h3>
-    <ul>
-    <li>Gender: ${gender}</li>
-    <li>Age; ${age}</li>
-</ul>
-    <table>
-        <thead>
-            <tr>
-            <th>Nationality</th>
-            <th>Probability</th>
-</tr>
-</thead>
-<tbody>
-    ${countries.map(country => `
-  <tr>
-    <td>${country.country_id}</td>
-    <td>${(country.probability * 100).toFixed(2)}%</td>
-  </tr>
-`).join('')}
-</tbody>
-</table>
-`;
+            <h3>Results for ${name}:</h3>
+            <ul>
+                <li>Gender: ${gender}</li>
+                <li>Age: ${age}</li>
+            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nationality</th>
+                        <th>Probability</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${countries.map(country => `
+                    <tr>
+                        <td>${country.country_id}</td>
+                        <td>${(country.probability * 100).toFixed(2)}%</td>
+                    </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
     }
+
+    // Global Search Logic
+    function performSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        if (!query) return;
+        const searchRoutes = {
+            'demographic': 'demographics.html', 'age': 'demographics.html',
+            'linguistic': 'linguistic-analysis.html', 'language': 'linguistic-analysis.html',
+            'bluesky': 'bluesky-keywords.html', 'football': 'football-pipeline.html',
+            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': 'about.html'
+        };
+        for (const keyword in searchRoutes) {
+            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
+        }
+        alert('No exact modules found for: "' + query + '"');
+    }
+    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
 </script>
-
-<h2>How does it work?</h2>
-
 </body>
 </html>

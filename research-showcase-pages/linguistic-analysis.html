@@ -3,57 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Linguistical analysis of posts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/main.css">
 </head>
 <body>
 <header class="kul-header">
-
     <div class="kul-top-bar">
         <div class="kul-logo-container">
             <a href="../index.html" class="kul-logo">KU LEUVEN</a>
         </div>
         <div class="kul-top-right">
             <div class="kul-search-box">
-                <input type="text" placeholder="Zoeken in SoMAnTic">
-                <span style="font-size: 1.2rem;">⚲</span>
+                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
+                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
             </div>
         </div>
     </div>
-
     <nav class="kul-main-nav">
         <ul class="kul-nav-list">
             <li><a href="../index.html">Home</a></li>
             <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
-            <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
+            <li><a href="bluesky-keywords.html">BlueSky</a></li>
+            <li><a href="demographics.html">Demographics</a></li>
+            <li><a href="linguistic-analysis.html">Linguistics</a></li>
+            <li><a href="football-pipeline.html">Football</a></li>
         </ul>
     </nav>
-
 </header>
-<h1>Linguistic analysis of posts</h1>
-<p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through it's <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>.
 
-<h2>Analyze your post!</h2>
-<p>1. Write your sentence:</p>
-<textarea id="sentence" name="sentence" placeholder="Write your sentence here..." rows="5" cols="33">
-</textarea>
+<div class="container mt-5 mb-5">
+    <h1>Linguistic analysis of posts</h1>
+    <p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing" target="_blank">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php" target="_blank">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through its <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php" target="_blank">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>
 
-<button onclick="analyzeSent()">Analyze sentence</button>
+    <h2>Analyze your post!</h2>
+    <p>1. Write your sentence:</p>
+    <textarea id="sentence" name="sentence" placeholder="Write your sentence here..." rows="5"></textarea>
 
-<p>2. Choose a model:</p>
+    <p>2. Choose a model:</p>
+    <select name="model" id="model">
+        <option value="english-ewt-ud-2.6-200830">English</option>
+        <option value="french-gsd-ud-2.6-200830">French</option>
+        <option value="dutch-lassysmall-ud-2.6-200830">Dutch</option>
+        <option value="chinese-gsd-ud-2.6-200830">Chinese</option>
+        <option value="croatian-set-ud-2.6-200830">Croatian</option>
+    </select>
+    <br>
+    <button onclick="analyzeSent()">Analyze sentence</button>
 
-<select name="model" id="model">
-    <option value="english-ewt-ud-2.6-200830">English</option>
-    <option value="french-gsd-ud-2.6-200830">French</option>
-    <option value="dutch-lassysmall-ud-2.6-200830">Dutch</option>
-    <option value="chinese-gsd-ud-2.6-200830">Chinese</option>
-    <option value="croatian-set-ud-2.6-200830">Croatian</option>
-</select>
+    <div id="sentAnalysis"></div>
+</div>
 
-
-<div id="sentAnalysis"></div>
 <script>
     function escapeHtml(text) {
         return String(text)
@@ -69,83 +68,87 @@
         const model = document.getElementById('model').value;
 
         if (!sentence) {
-            document.getElementById('sentence').innerHTML = '<p>Please enter a sentence.</p>';
+            document.getElementById('sentAnalysis').innerHTML = '<p>Please enter a sentence.</p>';
             return;
         }
 
         try {
-
-            const response = await fetch(`https://lindat.mff.cuni.cz/services/udpipe/api/process?model=${model}&tokenizer&tagger&parser&data=${sentence}`);
-
+            const response = await fetch(`https://lindat.mff.cuni.cz/services/udpipe/api/process?model=${model}&tokenizer&tagger&parser&data=${encodeURIComponent(sentence)}`);
             const data = await response.json();
             const conllu = data.result;
 
             const lines = conllu.split('\n');
-            const metadata = [];
             const rows = [];
 
             for (const line of lines) {
                 const trimmed = line.trim();
-
-                if (!trimmed) continue;
-
-                if (trimmed.startsWith('#')) {
-                    metadata.push(trimmed);
-                    continue;
-                }
+                if (!trimmed || trimmed.startsWith('#')) continue;
 
                 const cols = line.split('\t');
-
                 if (cols.length === 10) {
                     rows.push(cols);
                 }
             }
 
             document.getElementById('sentAnalysis').innerHTML = `
-        <h3>Results for: <strong>${(sentence)}</strong></h3>
-
-
-        <table border="1" cellpadding="6" cellspacing="0">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>FORM</th>
-              <th>LEMMA</th>
-              <th>UPOS</th>
-              <th>XPOS</th>
-              <th>FEATS</th>
-              <th>HEAD</th>
-              <th>DEPREL</th>
-              <th>DEPS</th>
-              <th>MISC</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rows.map(row => `
-              <tr>
-                <td>${row[0]}</td>
-                <td>${row[1]}</td>
-                <td>${row[2]}</td>
-                <td>${row[3]}</td>
-                <td>${row[4]}</td>
-                <td>${row[5]}</td>
-                <td>${row[6]}</td>
-                <td>${row[7]}</td>
-                <td>${row[8]}</td>
-                <td>${row[9]}</td>
-              </tr>
-            `).join('')}
-          </tbody>
-        </table>
-      `;
-
+                <h3>Results for: <strong>${escapeHtml(sentence)}</strong></h3>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>FORM</th>
+                                <th>LEMMA</th>
+                                <th>UPOS</th>
+                                <th>XPOS</th>
+                                <th>FEATS</th>
+                                <th>HEAD</th>
+                                <th>DEPREL</th>
+                                <th>DEPS</th>
+                                <th>MISC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rows.map(row => `
+                                <tr>
+                                    <td>${row[0]}</td>
+                                    <td>${row[1]}</td>
+                                    <td>${row[2]}</td>
+                                    <td>${row[3]}</td>
+                                    <td>${row[4]}</td>
+                                    <td>${row[5]}</td>
+                                    <td>${row[6]}</td>
+                                    <td>${row[7]}</td>
+                                    <td>${row[8]}</td>
+                                    <td>${row[9]}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
         } catch (error) {
-            document.getElementById('sentAnalysis').innerHTML =
-                `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;
+            document.getElementById('sentAnalysis').innerHTML = `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;
         }
     }
+
+    // Global Search Logic
+    function performSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        if (!query) return;
+        const searchRoutes = {
+            'demographic': 'demographics.html', 'age': 'demographics.html',
+            'linguistic': 'linguistic-analysis.html', 'language': 'linguistic-analysis.html',
+            'bluesky': 'bluesky-keywords.html', 'football': 'football-pipeline.html',
+            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': 'about.html'
+        };
+        for (const keyword in searchRoutes) {
+            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
+        }
+        alert('No exact modules found for: "' + query + '"');
+    }
+    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
 </script>
-<h2>How does it work?</h2>
 </body>
 </html>
-

@@ -32,12 +32,13 @@ This project was developed by Group G7 ("Almost Belgian") for the Web Informatio
 
 ```text
 ./
-├── CSS/                            # Global styling and KU Leuven Huisstijl
+├── CSS/                            # Global styling
 │   ├── main.css
 │   └── showcase-styles.css
 ├── guidelines/                     # Static documentation and legal resources
 │   ├── DSA.pdf
 │   └── guidelines.html
+├── images/                         # Logos and visual assets
 ├── research-showcase-pages/        # Interactive API demonstration modules
 │   ├── about.html
 │   ├── bluesky-keywords.html
@@ -45,6 +46,7 @@ This project was developed by Group G7 ("Almost Belgian") for the Web Informatio
 │   ├── football-pipeline.html
 │   ├── linguistic-analysis.html
 │   └── research-showcase-mainpage.html
+├── index.html                      # Landing page
 ├── index.js                        # Main application logic
 ├── package.json                    # Project dependencies
 └── README.md                       # Project documentation

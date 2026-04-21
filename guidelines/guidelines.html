@@ -3,278 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <title>Guidelines</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/main.css">
 </head>
 <body>
 <header class="kul-header">
-
     <div class="kul-top-bar">
         <div class="kul-logo-container">
             <a href="../index.html" class="kul-logo">KU LEUVEN</a>
         </div>
         <div class="kul-top-right">
             <div class="kul-search-box">
-                <input type="text" placeholder="Zoeken in SoMAnTic">
-                <span style="font-size: 1.2rem;">⚲</span>
+                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
+                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
             </div>
         </div>
     </div>
-
     <nav class="kul-main-nav">
         <ul class="kul-nav-list">
             <li><a href="../index.html">Home</a></li>
-            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
+            <li><a href="guidelines.html">Guidelines</a></li>
             <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
             <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
             <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
             <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
         </ul>
     </nav>
-
 </header>
-<div class="page-layout">
-    <main class="main-content">
 
-    <h1>Guidelines for social media API access</h1>
-        <!--  -->
+<div class="container mt-5 mb-5">
 
-<!-- DESCRIPTION OF THE PAGE  -->
-<p>This page is dedicated to explaining what APIs can and cannot do.</p>
-<aside class="contents-sidebar">
-    <nav>
-        <p class="contents-title">Contents</p>
-        <ol>
-            <li><a href="#api-definition">What are APIs</a></li>
-            <li><a href="#api-data">What kind of data expect from APIs</a>
-            </li><li><a href="#api-access">How to access APIs</a></li>
-            <li><a href="#api-limitations">Which limitations to consider</a></li>
-            <li><a href="#api-links">Useful links</a></li>
-        </ol>
-    </nav>
-</aside>
+    <div class="page-layout">
 
-<!-- 1. API DEFINITION  -->
-<h2 id = "api-definition">1. APIs defnition</h2>
-<p>
-    An API, for Application Programming Interface, is a tool provided by online platforms to allow users to get data from a website in a machine-readable format.
-    <br> For research purposes, social media APIs can be a valuable source of information, by providing researchers with important amounts of data, easily accessible and outside any legal consideration.
-</p>
+        <aside class="contents-sidebar">
+            <nav>
+                <p class="contents-title">Contents</p>
+                <ol>
+                    <li><a href="#api-definition">What are APIs</a></li>
+                    <li><a href="#api-data">What kind of data expect from APIs</a></li>
+                    <li><a href="#api-access">How to access APIs</a></li>
+                    <li><a href="#api-limitations">Which limitations to consider</a></li>
+                    <li><a href="#api-links">Useful links</a></li>
+                </ol>
+            </nav>
+        </aside>
 
+        <main class="main-content">
+            <h1>Guidelines for social media API access</h1>
 
-<!-- 2. API DATA -->
-<h2 id = "api-data">2. What kind of data to expect from an API?</h2>
-<p>APIs return data in a structured format. Even if it mainly consists of texts (for example text from a post or a comment) and numbers (number of likes, comments, reshares, time of the publication, etc.) they can also contain sounds, pictures and videos. Often, this type of content isn’t directly put in the downloadable file but can be retrieved via a specific URL and then downloaded. Be still aware that these links often expire after a short time, and it’s then not possible to retrieve the media.
-<br> For example, here is the kind of data you can find in a social media API.
-</p>
-<table>
-    <thead>
-    <tr>
-        <th>Type of data</th>
-        <th>Description</th>
-        <th>Use</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><strong>Content data</strong></td>
-        <td>Content created and/or posted by the user such as text (including mentions, hashtags and links), pictures, videos or sounds.</td>
-        <td>Analyse posts content, comments.</td>
-    </tr>
-    <tr>
-        <td><strong>User data</strong></td>
-        <td>All metadata concerning the account. We can cite, non-exhaustively, followers count, user information, demographic information, etc.</td>
-        <td>Study the persona of accounts.</td>
-    </tr>
-    <tr>
-        <td><strong>Engagement data</strong></td>
-        <td>Metrics testifying of the users activity on a post such as likes, comments, shares and views.</td>
-        <td>Studying user engagement.</td>
-    </tr>
-    <tr>
-        <td><strong>Moderation data</strong></td>
-        <td>Posts or users flagged, deleted or labelled by external sources.</td>
-        <td>Study effectiveness of platforms moderation and what is the platform deleting.</td>
-    </tr>
-    <tr>
-        <td><strong>Temporal data</strong></td>
-        <td>Time-based activity as, for example, the engagement a post receives over time.</td>
-        <td>Analysing timelines of trends, misinformation, or viral content.</td>
-    </tr>
-    <tr>
-        <td><strong>Network data</strong></td>
-        <td>Users connections and interactions.</td>
-        <td>Analysing how users are connected or how influential nodes act within the users.</td>
-    </tr>
-    <tr>
-        <td><strong>Geospatial data</strong></td>
-        <td>Anonymised and aggregated location data.</td>
-        <td>Studying phenomena or trends by geographical zones.</td>
-    </tr>
-    </tbody>
-</table>
+            <p>This page is dedicated to explaining what APIs can and cannot do.</p>
 
-<!-- 3. ACCESS TO APIs -->
-<h2 id = "api-access">3. How to access APIs?</h2>
-<p>Different APIs access are possible. Some are free, other not, and even freely available ones can request specific authorization aspects. We focus here on social media access. </p>
+            <h2 id="api-definition">1. APIs definition</h2>
+            <p>
+                An API, for Application Programming Interface, is a tool provided by online platforms to allow users to get data from a website in a machine-readable format.
+                <br> For research purposes, social media APIs can be a valuable source of information, by providing researchers with important amounts of data, easily accessible and outside any legal consideration.
+            </p>
 
-    <!-- DIFFICULTIES -->
-<h3>3.1 Difficulties of getting an social media API acces</h3>
-<p>Nowadays, social media platforms are restricting their free access to their APIs, preferring giving it behind a paywall.</p>
+            <h2 id="api-data">2. What kind of data to expect from an API?</h2>
+            <p>APIs return data in a structured format. Even if it mainly consists of texts (for example text from a post or a comment) and numbers (number of likes, comments, reshares, time of the publication, etc.) they can also contain sounds, pictures and videos. Often, this type of content isn’t directly put in the downloadable file but can be retrieved via a specific URL and then downloaded. Be still aware that these links often expire after a short time, and it’s then not possible to retrieve the media.
+                <br> For example, here is the kind of data you can find in a social media API.
+            </p>
 
-        <!-- VLOPS EXCEPTONS -->
-<h3>3.2 Special treatments of VLOPs</h3>
-<p>Under the DSA Article 40(12), platforms having at least 45 millions of users a month (which equals approximatively 10% of the European citizens) have to give access without undue delay to researchers studying systemic risks within the European Union. The social media falling in this category are Facebook, Instagram, LinkedIn, Pinterest, Snapchat, TikTok, X and YouTube.
+            <table>
+                <thead>
+                <tr>
+                    <th>Type of data</th>
+                    <th>Description</th>
+                    <th>Use</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><strong>Content data</strong></td>
+                    <td>Content created and/or posted by the user such as text (including mentions, hashtags and links), pictures, videos or sounds.</td>
+                    <td>Analyse posts content, comments.</td>
+                </tr>
+                <tr>
+                    <td><strong>User data</strong></td>
+                    <td>All metadata concerning the account. We can cite, non-exhaustively, followers count, user information, demographic information, etc.</td>
+                    <td>Study the persona of accounts.</td>
+                </tr>
+                <tr>
+                    <td><strong>Engagement data</strong></td>
+                    <td>Metrics testifying of the users activity on a post such as likes, comments, shares and views.</td>
+                    <td>Studying user engagement.</td>
+                </tr>
+                <tr>
+                    <td><strong>Moderation data</strong></td>
+                    <td>Posts or users flagged, deleted or labelled by external sources.</td>
+                    <td>Study effectiveness of platforms moderation and what is the platform deleting.</td>
+                </tr>
+                <tr>
+                    <td><strong>Temporal data</strong></td>
+                    <td>Time-based activity as, for example, the engagement a post receives over time.</td>
+                    <td>Analysing timelines of trends, misinformation, or viral content.</td>
+                </tr>
+                <tr>
+                    <td><strong>Network data</strong></td>
+                    <td>Users connections and interactions.</td>
+                    <td>Analysing how users are connected or how influential nodes act within the users.</td>
+                </tr>
+                <tr>
+                    <td><strong>Geospatial data</strong></td>
+                    <td>Anonymised and aggregated location data.</td>
+                    <td>Studying phenomena or trends by geographical zones.</td>
+                </tr>
+                </tbody>
+            </table>
 
-    <br>Unfortunately, getting access to these APIs, even for researchers studying systemic risks, is a difficult journey. Platforms usually expect from researchers to be able to fulfil certain requirements, that vary from one platform to another. Besides the notion of systemic risks, researchers have also to prove that they can handle personal data protection.
-</p>
+            <h2 id="api-access">3. How to access APIs?</h2>
+            <p>Different APIs access are possible. Some are free, other not, and even freely available ones can request specific authorization aspects. We focus here on social media access. </p>
 
-         <!-- INFORMATION ON SYSTEMIC RISKS -->
-<details>
-    <summary>Learn more about systemic risks</summary>
-    <p>Systemic risks are defined in the Article 34(1) of the DSA and are the following:</p>
-    <ul>
-        <li>(a) the dissemination of illegal content through their services;</li>
-        <li>(b) any actual or foreseeable negative effects for the exercise of fundamental rights, in particular the fundamental rights to human dignity enshrined in Article 1 of the Charter, to respect for private and family life enshrined in Article 7 of the Charter, to the protection of personal data enshrined in Article 8 of the Charter, to freedom of expression and information, including the freedom and pluralism of the media, enshrined in Article 11 of the Charter, to non-discrimination enshrined in Article 21 of the Charter, to respect for the rights of the child enshrined in Article 24 of the Charter and to a high-level of consumer protection enshrined in Article 38 of the Charter;</li>
-        <li>(c) any actual or foreseeable negative effects on civic discourse and electoral processes, and public security;</li>
-        <li>(d) any actual or foreseeable negative effects in relation to gender-based violence, the protection of public health and minors and serious negative consequences to the person’s physical and mental well-being.</li>
-    </ul>
-</details>
+            <h3>3.1 Difficulties of getting an social media API acces</h3>
+            <p>Nowadays, social media platforms are restricting their free access to their APIs, preferring giving it behind a paywall.</p>
 
-         <!-- INFORMATION ON DATA PROTECTION MEASURES -->
-<details>
-    <summary>Learn more about data protection measures</summary>
-    <p>Data protection measures are explained in the Delegated Act on the DSA and are the followings:</p>
-    <ul>
-        <li>(a) The assessment of the risks concerning processing of personal data and data protection impact assessments </li>
-        <li>(b) network security measures</li>
-        <li>(c) information on the intended storage period and the data destruction plans</li>
-        <li>(d) organisational measures such as internal review processes, restrictions of access rights and information sharing</li>
-        <li>(e) contractual clauses, such as non-disclosure agreements or data agreements</li>
-        <li>(f) existence of training on data security and protection of personal data received by the applicant researchers </li>
-        <li>(g) whether secure processing environments is necessary to process the data</li>
-    </ul>
-</details>
+            <h3>3.2 Special treatments of VLOPs</h3>
+            <p>Under the DSA Article 40(12), platforms having at least 45 millions of users a month (which equals approximatively 10% of the European citizens) have to give access without undue delay to researchers studying systemic risks within the European Union. The social media falling in this category are Facebook, Instagram, LinkedIn, Pinterest, Snapchat, TikTok, X and YouTube.
+                <br>Unfortunately, getting access to these APIs, even for researchers studying systemic risks, is a difficult journey. Platforms usually expect from researchers to be able to fulfil certain requirements, that vary from one platform to another. Besides the notion of systemic risks, researchers have also to prove that they can handle personal data protection.
+            </p>
 
-            <!-- DOWNLOAD DSA -->
-<br>
-<p>For more information, you can download the DSA on this <a href="DSA.pdf" download="DSA.pdf">link</a>.</p>
+            <details>
+                <summary>Learn more about systemic risks</summary>
+                <p>Systemic risks are defined in the Article 34(1) of the DSA and are the following:</p>
+                <ul>
+                    <li>(a) the dissemination of illegal content through their services;</li>
+                    <li>(b) any actual or foreseeable negative effects for the exercise of fundamental rights, in particular the fundamental rights to human dignity enshrined in Article 1 of the Charter, to respect for private and family life enshrined in Article 7 of the Charter, to the protection of personal data enshrined in Article 8 of the Charter, to freedom of expression and information, including the freedom and pluralism of the media, enshrined in Article 11 of the Charter, to non-discrimination enshrined in Article 21 of the Charter, to respect for the rights of the child enshrined in Article 24 of the Charter and to a high-level of consumer protection enshrined in Article 38 of the Charter;</li>
+                    <li>(c) any actual or foreseeable negative effects on civic discourse and electoral processes, and public security;</li>
+                    <li>(d) any actual or foreseeable negative effects in relation to gender-based violence, the protection of public health and minors and serious negative consequences to the person’s physical and mental well-being.</li>
+                </ul>
+            </details>
 
+            <details>
+                <summary>Learn more about data protection measures</summary>
+                <p>Data protection measures are explained in the Delegated Act on the DSA and are the followings:</p>
+                <ul>
+                    <li>(a) The assessment of the risks concerning processing of personal data and data protection impact assessments </li>
+                    <li>(b) network security measures</li>
+                    <li>(c) information on the intended storage period and the data destruction plans</li>
+                    <li>(d) organisational measures such as internal review processes, restrictions of access rights and information sharing</li>
+                    <li>(e) contractual clauses, such as non-disclosure agreements or data agreements</li>
+                    <li>(f) existence of training on data security and protection of personal data received by the applicant researchers </li>
+                    <li>(g) whether secure processing environments is necessary to process the data</li>
+                </ul>
+            </details>
 
+            <br>
+            <p>For more information, you can download the DSA on this <a href="DSA.pdf" download="DSA.pdf">link</a>.</p>
 
+            <h3>3.3 Other social media</h3>
+            <p> Smaller platforms are not bound by the DSA to give access to their API to researchers. It is then up to them to grant such access freely. Most of them don’t, except Bluesky which serves as a basis in this website. </p>
 
-            <!-- OTHER SOCIAL MEDIA -->
-<h3>3.3 Other social media</h3>
-<p> Smaller platforms are not bound by the DSA to give access to their API to researchers. It is then up to them to grant such access freely. Most of them don’t, except Bluesky which serves as a basis in this website. </p>
+            <h2 id="api-limitations">4. APIs limitations</h2>
+            <p>
+                Before starting the request process of APIs, be aware of certain limitations that can hinder research projects.
+                <br> The limitations stated here are mainly about VLOPs, but can still be extended to other social medi.
+            </p>
 
-<!-- 4. APIs LIMITATIONS  -->
-<h2 id ="api-limitations">4. APIs limitations</h2>
+            <ul>
+                <li><strong>Time constraints:</strong> The platform first has to approve the researcher’s request to its API. Timeframes are long and also untransparent. If some social media (like Meta) state they’ll take a decision within a few weeks, it can in the end take several months (sometimes more than two years) before the researcher gets an answer. Such delays seriously hinder research. </li>
+                <li><strong>Untransparency:</strong> As already mentioned in the time constraints, transparency is a severe lack of APIs application forms. Besides unknown timeframes, platforms also usually don’t precise which kind of data they have in possession, nor do they explain reasons of rejection when an application is not accepted. </li>
+                <li><strong>Rate limits:</strong> For researchers wanting to work on large amounts of data, it is also to note that APIs can be really restrictive in terms of data rates.</li>
+                <li><strong>Impossibility of download:</strong> Platforms usually impede to download data from their API, obligating researchers to work in a Virtual Computing Environment. This kind of environment prevents to work with specific tools, leaving the researcher with those provided by the platform, as well as to combine the data with data collected elsewhere. </li>
+                <li><strong>Limited tools:</strong> Moreover, tools put at disposition in VCE can be really restrictive, sometimes allowing nothing more than a simple keyword analysis. </li>
+                <li><strong>Missing data:</strong> API data can be missing because of content deletion that occurs in three cases.
+                    <ul><li>Data was deleted from the social media content moderation and was thus deleted from the API.</li>
+                        <li>The user’s account became private, removing hence his content from the public API. </li>
+                        <li>The user deleted his account (or his account was deleted by the platform), leading all his contents to be removed from the API.</li>
+                        The three cases show that API content is not coherent with what was shown on the platform, but only to what is still on the social media. It is hence difficult to study the impact that posts may had in the past as there is no way to access them anymore.
+                    </ul></li>
+                <li><strong>Delays in API updates:</strong> Social media say that they don’t update their API on a continuous basis. For example, posts’ likes and comments might be updated only once per day or even less, leaving researchers with incomplete information. </li>
+                <li><strong>Lack of contextual information:</strong> Also, platforms APIs miss the context in which posts occurred, which deprives researchers of relevant contextual information.</li>
+                <li><strong>Poor metadata:</strong> In the same idea, APIs often don’t propose a lot of metadata, hindering possibilities of research. </li>
+                <li><strong>Platform policies:</strong> Another impactful issue is that platforms can decide to change their API policies without any discussion or delay, meaning they can annihilate research by suddenly close their data access. </li>
+                <li><strong>Language barriers:</strong>Some application forms can only be filled out in English, hindering researchers that don’t master this language to request data. Contrariwise, data requested can still be of every language. </li>
+            </ul>
 
-<p>
-    Before starting the request process of APIs, be aware of certain limitations that can hinder research projects.
-    <br> The limitations stated here are mainly about VLOPs, but can still be extended to other social medi.
-</p>
+            <h2 id="api-links">5. Useful links</h2>
+            <h3>Very Large Online Platforms</h3>
+            <p>In the table below, you can find pages related to social media data dictionaries and request forms under the DSA 40(12). </p>
 
-<ul>
-    <li><strong>Time constraints:</strong> The platform first has to approve the researcher’s request to its API. Timeframes are long and also untransparent. If some social media (like Meta) state they’ll take a decision within a few weeks, it can in the end take several months (sometimes more than two years) before the researcher gets an answer. Such delays seriously hinder research. </li>
-    <li><strong>Untransparency:</strong> As already mentioned in the time constraints, transparency is a severe lack of APIs application forms. Besides unknown timeframes, platforms also usually don’t precise which kind of data they have in possession, nor do they explain reasons of rejection when an application is not accepted. </li>
-    <li><strong>Rate limits:</strong> For researchers wanting to work on large amounts of data, it is also to note that APIs can be really restrictive in terms of data rates.</li>
-    <li><strong>Impossibility of download:</strong> Platforms usually impede to download data from their API, obligating researchers to work in a Virtual Computing Environment. This kind of environment prevents to work with specific tools, leaving the researcher with those provided by the platform, as well as to combine the data with data collected elsewhere. </li>
-    <li><strong>Limited tools:</strong> Moreover, tools put at disposition in VCE can be really restrictive, sometimes allowing nothing more than a simple keyword analysis. </li>
-    <li><strong>Missing data:</strong> API data can be missing because of content deletion that occurs in three cases.
-    <ul><li>Data was deleted from the social media content moderation and was thus deleted from the API.</li>
-    <li>The user’s account became private, removing hence his content from the public API. </li>
-    <li>The user deleted his account (or his account was deleted by the platform), leading all his contents to be removed from the API.</li>
-    The three cases show that API content is not coherent with what was shown on the platform, but only to what is still on the social media. It is hence difficult to study the impact that posts may had in the past as there is no way to access them anymore.
-    </ul></li>
-    <li><strong>Delays in API updates:</strong> Social media say that they don’t update their API on a continuous basis. For example, posts’ likes and comments might be updated only once per day or even less, leaving researchers with incomplete information. </li>
-    <li><strong>Lack of contextual information:</strong> Also, platforms APIs miss the context in which posts occurred, which deprives researchers of relevant contextual information.</li>
-    <li><strong>Poor metadata:</strong> In the same idea, APIs often don’t propose a lot of metadata, hindering possibilities of research. </li>
-    <li><strong>Platform policies:</strong> Another impactful issue is that platforms can decide to change their API policies without any discussion or delay, meaning they can annihilate research by suddenly close their data access. </li>
-    <li><strong>Language barriers:</strong>Some application forms can only be filled out in English, hindering researchers that don’t master this language to request data. Contrariwise, data requested can still be of every language. </li>
-</ul>
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>API dictionary</th>
+                    <th>Request form</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="platform"> Facebook<img src="../images/facebook.svg" alt="Facebook logo"></td>
+                    <td><a href="https://developers.facebook.com/docs/content-library-and-api/appendix/data-dictionary " target="_blank">Facebook dictionary</a></td>
+                    <td><a href="https://developers.facebook.com/docs/content-library-and-api/get-access/mcl-application-guide " target="_blank">Facebook form</a></td>
+                </tr>
+                <tr>
+                    <td class="platform">Instragram <img src="../images/instagram.svg" alt="Instagram logo"></td>
+                    <td><a href="https://developers.facebook.com/docs/content-library-and-api/appendix/data-dictionary" target="_blank">Instagram dictionary</a></td>
+                    <td><a href="https://developers.facebook.com/docs/content-library-and-api/get-access/mcl-application-guide" target="_blank">Instagram form</a></td>
+                </tr>
+                <tr>
+                    <td class="platform">LinkedIn <img src="../images/linkedin.png" alt="LinkedIn logo"></td>
+                    <td><a href="https://developers.facebook.com/docs/content-library-and-api/appendix/data-dictionary" target="_blank">LinkedIn dictionary</a></td>
+                    <td><a href="https://developers.facebook.com/docs/content-library-and-api/get-access/mcl-application-guide" target="_blank">LinkedIn form</a></td>
+                </tr>
+                <tr>
+                    <td class="platform">Pinterest <img src="../images/pinterest.svg" alt="Pinterest logo"></td>
+                    <td><a href="https://help.pinterest.com/en/article/digital-services-act" target="_blank">Pinterest dictionary</a></td>
+                    <td><a href="https://help.pinterest.com/en/landing/researchers-intake-form" target="_blank">Pinterest form</a></td>
+                </tr>
+                <tr>
+                    <td class="platform">Snapchat <img src="../images/snapchat.svg" alt="Snapchat logo"></td>
+                    <td><a href="https://values.snap.com/privacy/transparency/researcher-access" target="_blank">Snapchat dictionary</a></td>
+                    <td>No access procedure found</td>
+                </tr>
+                <tr>
+                    <td class="platform">TikTok <img src="../images/tiktok.svg" alt="TikTok logo"></td>
+                    <td><a href="https://developers.tiktok.com/products/research-api/vetted-researcher-data-access" target="_blank">TikTok dictionary</a></td>
+                    <td><a href="https://developers.tiktok.com/application/research-api " target="_blank">TikTok form</a></td>
+                </tr>
+                <tr>
+                    <td class="platform">X <img src="../images/x.svg" alt="x logo"></td>
+                    <td><a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">X dictionary</a></td>
+                    <td><a href="https://docs.google.com/forms/d/e/1FAIpQLSdo0O-D6Kxa3cV4g1JLz2T_0Sk3hdEnTdv8dJmibagCnzJ7kg/viewform " target="_blank">X form</a></td>
+                </tr>
+                <tr>
+                    <td class="platform">Youtube <img src="../images/youtube.svg" alt="Youtube logo"></td>
+                    <td><a href="https://developers.google.com/youtube/v3/docs" target="_blank">Youtube dictionary</a></td>
+                    <td><a href="https://support.google.com/youtube/contact/yt_researcher_certification " target="_blank">Youtube form</a></td>
+                </tr>
+                </tbody>
+            </table>
 
+            <h3>Other social media</h3>
+            <p>Here you can find data dictionaries for social media that are not considered as VLOPs. There are no links to request forms as the accessibility to their API is totally let to their will. </p>
+            <ul>
+                <li class="platform">
+                    <img src="../images/bluesky.svg" alt="Bluesky logo">
+                    <a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Bluesky</a>
+                </li>
+                <li class="platform">
+                    <img src="../images/reddit.svg" alt="Reddit logo">
+                    <a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Reddit</a>
+                </li>
+                <li class="platform">
+                    <img src="../images/telegram.svg" alt="Telegram logo">
+                    <a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Telegram</a>
+                </li>
+            </ul>
 
-
-<p></p> <!-- Limitations of APIs accuracy  -->
-
-<!-- 5. USEFUL LINKS  -->
-<h2 id ="api-links">5. Useful links</h2>
-
-    <!-- VLOPs  -->
-<h3>Very Large Online Platforms</h3>
-<p>In the table below, you can find pages related to social media data dictionaries and request forms under the DSA 40(12). </p>
-<table>
-    <thead>
-    <tr>
-        <th></th>
-        <th>API dictionary</th>
-        <th>Request form</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td class="platform"> Facebook<img src="/WIS-SoMAnTic/.idea/images/facebook.svg" alt="Facebook logo"></td>
-        <td><a href="https://developers.facebook.com/docs/content-library-and-api/appendix/data-dictionary " target="_blank">Link to dictionary</a></td>
-        <td><a href="https://developers.facebook.com/docs/content-library-and-api/get-access/mcl-application-guide " target="_blank">Link to form</a></td>
-    </tr>
-    <tr>
-        <td class="platform">Instragram <img src="/WIS-SoMAnTic/.idea/images/instagram.svg" alt="Instagram logo"></td>
-        <td><a href="https://developers.facebook.com/docs/content-library-and-api/appendix/data-dictionary" target="_blank">Link to dictionary</a></td>
-        <td><a href="https://developers.facebook.com/docs/content-library-and-api/get-access/mcl-application-guide" target="_blank">Link to form</a></td>
-    </tr>
-    <tr>
-        <td class="platform">LinkedIn <img src="/WIS-SoMAnTic/.idea/images/linkedin.png" alt="LinkedIn logo"></td>
-        <td><a href="https://developers.facebook.com/docs/content-library-and-api/appendix/data-dictionary" target="_blank">Link to dictionary</a></td>
-        <td><a href="https://developers.facebook.com/docs/content-library-and-api/get-access/mcl-application-guide" target="_blank">Link to form</a></td>
-    </tr>
-    <tr>
-        <td class="platform">Pinterest <img src="/WIS-SoMAnTic/.idea/images/pinterest.svg" alt="Pinterest logo"></td>
-        <td><a href="https://help.pinterest.com/en/article/digital-services-act" target="_blank">Link to dictionary</a></td>
-        <td><a href="https://help.pinterest.com/en/landing/researchers-intake-form" target="_blank">Link to form</a></td>
-    </tr>
-    <tr>
-        <td class="platform">Snapchat <img src="/WIS-SoMAnTic/.idea/images/snapchat.svg" alt="Snapchat logo"></td>
-        <td><a href="https://values.snap.com/privacy/transparency/researcher-access" target="_blank">Link to dictionary</a></td>
-        <td>No access procedure found</td>
-    </tr>
-    <tr>
-        <td class="platform">TikTok <img src="/WIS-SoMAnTic/.idea/images/tiktok.svg" alt="TikTok logo"></td>
-        <td><a href="https://developers.tiktok.com/products/research-api/vetted-researcher-data-access" target="_blank">Link to dictionary</a></td>
-        <td><a href="https://developers.tiktok.com/application/research-api " target="_blank">Link to form</a></td>
-    </tr>
-    <tr>
-        <td class="platform">X <img src="/WIS-SoMAnTic/.idea/images/x.svg" alt="x logo"></td>
-        <td><a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Link to dictionary</a></td>
-        <td><a href="https://docs.google.com/forms/d/e/1FAIpQLSdo0O-D6Kxa3cV4g1JLz2T_0Sk3hdEnTdv8dJmibagCnzJ7kg/viewform " target="_blank">Link to form</a></td>
-    </tr>
-    <tr>
-        <td class="platform">Youtube <img src="/WIS-SoMAnTic/.idea/images/youtube.svg" alt="Youtube logo"></td>
-        <td><a href="https://developers.google.com/youtube/v3/docs" target="_blank">Link to dictionary</a></td>
-        <td><a href="https://support.google.com/youtube/contact/yt_researcher_certification " target="_blank">Link to form</a></td>
-    </tr>
-    </tbody>
-</table>
-
-    <!-- VLOPs  -->
-<h3>Other social media</h3>
-<p>Here you can find data dictionaries for social media that are not considered as VLOPs. There are no links to request forms as the accessibility to their API is totally let to their will. </p> <!-- Also some links to APIs and documentation (at least Reddit and Bluesky) -->
-<ul>
-    <li class="platform">
-        <img src="/WIS-SoMAnTic/.idea/images/bluesky.svg" alt="Bluesky logo">
-        <a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Bluesky</a>
-    </li>
-    <li class="platform">
-        <img src="/WIS-SoMAnTic/.idea/images/reddit.svg" alt="Reddit logo">
-        <a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Reddit</a>
-    </li>
-    <li class="platform">
-        <img src="/WIS-SoMAnTic/.idea/images/telegram.svg" alt="Telegram logo">
-        <a href="https://docs.x.com/x-api/fundamentals/data-dictionary" target="_blank">Telegram</a>
-    </li>
-</ul>
-
-<!-- END OF PAGE + LINK TO OTHER PAGE-->
-    </main>
+        </main>
+    </div>
 </div>
+
+<script>
+    function performSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        if (!query) return;
+        const searchRoutes = {
+            'demographic': '../research-showcase-pages/demographics.html', 'age': '../research-showcase-pages/demographics.html',
+            'linguistic': '../research-showcase-pages/linguistic-analysis.html', 'language': '../research-showcase-pages/linguistic-analysis.html',
+            'bluesky': '../research-showcase-pages/bluesky-keywords.html', 'football': '../research-showcase-pages/football-pipeline.html',
+            'guideline': 'guidelines.html', 'dsa': 'guidelines.html', 'about': '../research-showcase-pages/about.html'
+        };
+        for (const keyword in searchRoutes) {
+            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
+        }
+        alert('No exact modules found for: "' + query + '"');
+    }
+    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
+    document.getElementById('searchBtn').addEventListener('click', performSearch);
+</script>
+
 </body>
 </html>
