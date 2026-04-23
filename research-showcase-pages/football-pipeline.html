@@ -62,28 +62,38 @@
         const dataTable = await responseTable.json();
         const teamNames = dataTable.table.map(team => team.strTeam);
 
+        const session_resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'}, body: JSON.stringify({identifier: '', password: ''})
+            }
+        )
+        const dataBS = await session_resp.json();
+        const token = await dataBS.accessJwt
+
+        const params = new URLSearchParams({
+            q:     'digital humanities',
+            limit: 5,
+            sort:  'latest'
+        });
+
+        const query_resp = await fetch(`https://bsky.social/xrpc/app.bsky.feed.searchPosts?${params}`,{
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const dataQ = await query_resp.json();
+        const post = dataQ.posts
 
 
-        async function BlueSky() {
-            const session_resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
-                    method: 'POST',
-                    headers: {'identifier': '', 'password': ''}
-                }
-            )
-            const dataBS = await session_resp.json();
-            const token = await dataBS.accessJwt
 
-            const query_resp = await fetch("https://bsky.social/xrpc/app.bsky.feed.searchPosts",{
-                method: 'GET',
-                headers: {}
-            });
-        }
+
 
         document.getElementById('result').innerHTML = `<h3>${leagueName}</h3>
         <img src="${badge}" alt="${leagueName} badge">
         <p>Here are top five teams in the league currently:</p>
-        <ol>${teamNames.map(teamName => `<li>${teamName}</li>`).join('')}</ol>`;
-        };
+        <ol>${teamNames.map(teamName => `<li>${teamName}</li>`).join('')}</ol>
+        <h3>Query</h3>
+        <p>${post}</p>`;
+        ;}
 </script>
 </body>
 </html>
