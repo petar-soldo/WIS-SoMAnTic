@@ -26,20 +26,26 @@
 </header>
 
 <div class="container mt-5 mb-5">
-    <h1>Searching BlueSky posts</h1>
-    <p>Hello, researcher! In this demo, you can test searching for BlueSky posts containing keywords you are interested in.</p>
+    <h1>How to query BlueSky posts?</h1>
+    <p>Hello, researcher! In this demo, you can test searching for BlueSky posts, based on keywords you find interesting. <p>It was made to showcase how querying social media in general could look like. We are using BlueSky API to do it, because it is the most accessible (relatively) widely used social media platform today (a phenomenon you can read about more in <a href="../guidelines/guidelines.html">our guidlines.</a>) The small application itself is quite simple - you just enter a keyword you would like to find posts about, your BlueSky handle (i.e. your username) and your BlueSky password (you can generate an <a href="https://blueskyfeeds.com/faq-app-password"> app password</a> not to use your personal one) and it will return 10 most recent posts from BlueSky which contain that word, together with some metadata.</p>
+    <p><a onclick="ScrollDown()" style="cursor: pointer;"> Scroll down</a> to test how it works!</p>
+    <script>
+        function ScrollDown(){
+        document.getElementById("searchArea").scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
     <h2>How does it work?</h2>
-    <p>Here I'll describe how it works.</p>
+    <p>This small demo works by taking you keyword and posting it to a <a href="https://docs.bsky.app/">BlueSky API</a>. To get your results, we actually have to make two API calls. The first API call establishes a connection by using your handle (i.e. username) and password. When we post them, the API sends us an 'authorization token' in return. We use this token in the second API call. We send it to another API point, together with your keyword and in return we get the posts we are interested in. We access the data we need and have the script print out a nice table!</p>
 
     <h2>What can I use it for?</h2>
-    <p>Some model use cases.</p>
+    <p>This is a very simple and direct content analysis method. Think about events or people you are interested in or whose surrounding discourse you would like to analyze. Just type them in and see what users of BlueSky have to say about it! </p>
 
-    <h1>Search BlueSky</h1>
-    <input type="text" id="keyword" placeholder="Enter a keyword">
-    <input type="text" id="username" placeholder="BlueSky handle" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="searchPost()">Search BlueSky</button>
+    <h1 id="searchArea">Search BlueSky!</h1>
+    <p>Select a keyword: <input type="text" id="keyword" placeholder="Enter a keyword">
+    Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" />
+    Type in your password: <input type="password" id="password" placeholder="Password" />
+        <button onclick="searchPost()">Search BlueSky</button> </p>
     <div id="blueskyResults"></div>
 </div>
 
@@ -60,7 +66,7 @@
 
         const params = new URLSearchParams({
             q: `${keyword}`,
-            limit: 5,
+            limit: 10,
             sort: 'latest'
         });
 
