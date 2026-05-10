@@ -42,8 +42,10 @@
     <option value="4331">Bundesliga</option>
     <option value="4629">Croatian First Football League</option>
     <option value="4336">Σούπερ Λιγκ 1</option>
-    <option value="4359">Chinese Super Lague</option>
+    <option value="4359">Chinese Super League</option>
 </select>
+<input type="text" id="username" placeholder="Bluesky handle" />
+<input type="password" id="password" placeholder="Password" />
 <button onclick="fetchFootballData()">Get Football Data</button>
 <div id="result"></div>
 
@@ -60,18 +62,21 @@
 
         const responseTable = await fetch(apiUrlTable);
         const dataTable = await responseTable.json();
-        const teamNames = dataTable.table.map(team => team.strTeam);
+        const teamName = dataTable.table[0].strTeam
 
+        document.getElementById('result').innerHTML = `<p>League is ${leagueName} and the team is ${teamName}</p>`;
+        const identifier = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
         const session_resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'}, body: JSON.stringify({identifier: '', password: ''})
+                headers: {'Content-Type': 'application/json'}, body: JSON.stringify({identifier: identifier, password: password})
             }
         )
         const dataBS = await session_resp.json();
         const token = await dataBS.accessJwt
 
         const params = new URLSearchParams({
-            q:     'digital humanities',
+            q:     `${teamName}`,
             limit: 5,
             sort:  'latest'
         });
@@ -81,18 +86,42 @@
             headers: { 'Authorization': `Bearer ${token}` }
         });
         const dataQ = await query_resp.json();
-        const post = dataQ.posts
+        const posts = dataQ.posts || [];
 
 
+        const rows = posts.map(p => {
+            const date = new Date(p.record?.createdAt).toLocaleDateString();
+            const handle = p.author?.handle ?? '';
+            const displayName = p.author?.displayName ?? '';
+            const text = p.record?.text ?? '';
+            const likes = p.likeCount ?? 0;
+            const uri = p.uri ?? '';
+            const url = uri.replace('at://', 'https://bsky.app/profile/').replace('/app.bsky.feed.post/', '/post/');
+
+            return `
+        <tr>
+            <td>${date}</td>
+            <td><a href="https://bsky.app/profile/${handle}" target="_blank">${displayName}<br><small>@${handle}</small></a></td>
+            <td>${text}</td>
+            <td>${likes}</td>
+            <td><a href="${url}" target="_blank">${url}</a></td>
+        </tr>`;
+        }).join('');
 
 
-
-        document.getElementById('result').innerHTML = `<h3>${leagueName}</h3>
-        <img src="${badge}" alt="${leagueName} badge">
-        <p>Here are top five teams in the league currently:</p>
-        <ol>${teamNames.map(teamName => `<li>${teamName}</li>`).join('')}</ol>
-        <h3>Query</h3>
-        <p>${post}</p>`;
+        document.getElementById('result').innerHTML = `<p>League is ${leagueName} and the team is ${teamName}</p>
+         <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Author</th>
+                <th>Text</th>
+                <th>Number of likes</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+    </table>`;
         ;}
 </script>
 </body>
