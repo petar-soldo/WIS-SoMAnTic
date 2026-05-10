@@ -26,9 +26,9 @@
         .btn-secondary { background-color: transparent; color: #fff; border: 2px solid #fff; padding: 13px 30px; font-size: 1.1rem; font-weight: bold; border-radius: 3px; text-decoration: none; transition: 0.3s; }
         .btn-secondary:hover { background-color: #fff; color: var(--kul-dark-blue); text-decoration: none; }
 
-        .feature-card { background: #fff; border: 1px solid var(--kul-border); border-top: 4px solid var(--kul-sedona-blue); padding: 30px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; height: 100%; }
-        .feature-card h3 { margin-top: 0; color: var(--kul-dark-blue); }
-        .feature-card p { color: #555; margin-bottom: 20px; }
+        .feature-card { margin: auto; background: #fff; border: 1px solid var(--kul-border); border-top: 4px solid var(--kul-sedona-blue); padding: 30px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; height: 100%; }
+        .feature-card h3 { margin: auto; margin-top: 0; color: var(--kul-dark-blue); }
+        .feature-card p { margin: auto; color: #555; margin-bottom: 20px; }
         .footer { text-align: center; padding: 30px; border-top: 1px solid var(--kul-border); color: #777; font-size: 0.9rem; }
     </style>
 </head>
@@ -36,12 +36,8 @@
 
 <header class="kul-header">
     <div class="kul-top-bar">
-        <div class="kul-logo-container"><a href="index.html" class="kul-logo">KU LEUVEN</a></div>
-        <div class="kul-top-right">
-            <div class="kul-search-box">
-                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
-                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
-            </div>
+        <div class="kul-logo-container">
+            <a href="../index.html" class="kul-logo">SoMAnTic@KUL</a>
         </div>
     </div>
     <nav class="kul-main-nav">
@@ -66,23 +62,7 @@
 </header>
 
 <div class="container mb-5">
-    <h2 class="text-center mb-4">Explore the Platform</h2>
-
-    <div class="row g-4 mb-5">
-        <div class="col-md-4 col-sm-12">
-            <div class="feature-card">
-                <h3>Theory & Guidelines</h3>
-                <p>Understand VLOPs, systemic risks, and the legal frameworks surrounding API access for researchers.</p>
-                <button onclick="window.location.href='guidelines/guidelines.html'">Learn More</button>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <div class="feature-card">
-                <h3>Live Data Querying</h3>
-                <p>Interact with live APIs. Fetch, parse, and analyze real data directly from the browser.</p>
-                <button onclick="window.location.href='research-showcase-pages/research-showcase-mainpage.html'">View Tools</button>
-            </div>
-        </div>
+    <div class="row justify-content-center">
         <div class="col-md-4 col-sm-12">
             <div class="feature-card">
                 <h3>About the Project</h3>

@@ -10,13 +10,7 @@
 <header class="kul-header">
     <div class="kul-top-bar">
         <div class="kul-logo-container">
-            <a href="../index.html" class="kul-logo">KU LEUVEN</a>
-        </div>
-        <div class="kul-top-right">
-            <div class="kul-search-box">
-                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
-                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
-            </div>
+            <a href="../index.html" class="kul-logo">SoMAnTic@KUL</a>
         </div>
     </div>
     <nav class="kul-main-nav">
@@ -32,11 +26,19 @@
 </header>
 
 <div class="container mt-5 mb-5">
-    <h1>Search BlueSky posts</h1>
-    <p>You can search for BlueSky posts by keywords.</p>
+    <h1>Searching BlueSky posts</h1>
+    <p>Hello, researcher! In this demo, you can test searching for BlueSky posts containing keywords you are interested in.</p>
 
-    <h2>Search BlueSky</h2>
-    <input type="text" id="keywordInput" placeholder="Enter a keyword">
+    <h2>How does it work?</h2>
+    <p>Here I'll describe how it works.</p>
+
+    <h2>What can I use it for?</h2>
+    <p>Some model use cases.</p>
+
+    <h1>Search BlueSky</h1>
+    <input type="text" id="keyword" placeholder="Enter a keyword">
+    <input type="text" id="username" placeholder="BlueSky handle" />
+    <input type="password" id="password" placeholder="Password" />
     <button onclick="searchPost()">Search BlueSky</button>
     <div id="blueskyResults"></div>
 </div>
@@ -44,33 +46,66 @@
 <script>
     // Bluesky API Logic
     async function searchPost() {
-        const keyword = document.getElementById('keywordInput').value.trim();
-        if (!keyword) {
-            alert("Please enter a keyword.");
-            return;
-        }
+        const identifier = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const keyword = document.getElementById('keyword').value;
+        const session_resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({identifier: identifier, password: password})
+            }
+        )
+        const dataBS = await session_resp.json();
+        const token = await dataBS.accessJwt
 
-        // TODO: Insert your specific BlueSky fetch logic here!
-        document.getElementById('blueskyResults').innerHTML = `<p>Fetching data for <strong>${keyword}</strong>...</p>`;
+        const params = new URLSearchParams({
+            q: `${keyword}`,
+            limit: 5,
+            sort: 'latest'
+        });
+
+        const query_resp = await fetch(`https://bsky.social/xrpc/app.bsky.feed.searchPosts?${params}`, {
+            method: 'GET',
+            headers: {'Authorization': `Bearer ${token}`}
+        });
+        const dataQ = await query_resp.json();
+        const posts = dataQ.posts || [];
+
+
+        const rows = posts.map(p => {
+            const date = new Date(p.record?.createdAt).toLocaleDateString();
+            const handle = p.author?.handle ?? '';
+            const displayName = p.author?.displayName ?? '';
+            const text = p.record?.text ?? '';
+            const likes = p.likeCount ?? 0;
+            const uri = p.uri ?? '';
+            const url = uri.replace('at://', 'https://bsky.app/profile/').replace('/app.bsky.feed.post/', '/post/');
+
+            return `
+        <tr>
+            <td>${date}</td>
+            <td><a href="https://bsky.app/profile/${handle}" target="_blank">${displayName}<br><small>@${handle}</small></a></td>
+            <td>${text}</td>
+            <td>${likes}</td>
+            <td><a href="${url}" target="_blank">${url}</a></td>
+        </tr>`;
+        }).join('');
+
+        document.getElementById('blueskyResults').innerHTML = `
+         <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Author</th>
+                <th>Text</th>
+                <th>Number of likes</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+    </table>`;
     }
 
-    // Global Search Bar Logic
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': 'demographics.html', 'age': 'demographics.html',
-            'linguistic': 'linguistic-analysis.html', 'language': 'linguistic-analysis.html',
-            'bluesky': 'bluesky-keywords.html', 'football': 'football-pipeline.html',
-            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': 'about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
 </script>
 </body>
 </html>

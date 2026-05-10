@@ -10,13 +10,7 @@
 
     <div class="kul-top-bar">
         <div class="kul-logo-container">
-            <a href="../index.html" class="kul-logo">KU LEUVEN</a>
-        </div>
-        <div class="kul-top-right">
-            <div class="kul-search-box">
-                <input type="text" placeholder="Zoeken in SoMAnTic">
-                <span style="font-size: 1.2rem;">⚲</span>
-            </div>
+            <a href="../index.html" class="kul-logo">SoMAnTic@KUL</a>
         </div>
     </div>
 
@@ -32,6 +26,13 @@
     </nav>
 
 </header>
+<h1>A complete pipeline</h1>
+<p>Let's see how a researcher could approach researching the discourse around a specific topic on social media. We are going to see a combination of different resources to do our reasearch. To make it more fun for us, we chose football as the topic and to make it simpler to understand we chose BLueSky as the social media.</p>
+<h2>What are you about to see?</h2>
+<p>This small working example will find the best performing football team in a football league of your choice. It will then search BlueSky and return all the posts containing the name of the leading team, together with some metadata.</p>
+<h2>How does it work?</h2>
+<p>Here I'll briefly explain how it works.</p>
+<h1>Give it a try!</h1>
 <p>Select a league</p>
 <select name="league" id="league">
     <option value="4328">Premier League</option>
@@ -44,7 +45,7 @@
     <option value="4336">Σούπερ Λιγκ 1</option>
     <option value="4359">Chinese Super League</option>
 </select>
-<input type="text" id="username" placeholder="Bluesky handle" />
+<input type="text" id="username" placeholder="BlueSky handle" />
 <input type="password" id="password" placeholder="Password" />
 <button onclick="fetchFootballData()">Get Football Data</button>
 <div id="result"></div>
@@ -57,14 +58,16 @@
 
         const responseLeague = await fetch(apiUrlLeague);
         const dataLeague = await responseLeague.json();
-        const leagueName = dataLeague.leagues[0].strLeague
-        const badge = dataLeague.leagues[0].strBadge
+        const leagueName = dataLeague.leagues[0].strLeague;
+        const leagueBadge = dataLeague.leagues[0].strBadge;
 
         const responseTable = await fetch(apiUrlTable);
         const dataTable = await responseTable.json();
-        const teamName = dataTable.table[0].strTeam
+        const teamName = dataTable.table[0].strTeam;
+        const teamBadge = dataTable.table[0].strBadge;
 
         document.getElementById('result').innerHTML = `<p>League is ${leagueName} and the team is ${teamName}</p>`;
+
         const identifier = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const session_resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
@@ -109,7 +112,7 @@
         }).join('');
 
 
-        document.getElementById('result').innerHTML = `<p>League is ${leagueName} and the team is ${teamName}</p>
+        document.getElementById('result').innerHTML = `<p>In the ${leagueName} the currently best ranked team is ${teamName}</p>
          <table>
         <thead>
             <tr>
@@ -122,7 +125,7 @@
         </thead>
         <tbody>${rows}</tbody>
     </table>`;
-        ;}
+        }
 </script>
 </body>
 </html>
