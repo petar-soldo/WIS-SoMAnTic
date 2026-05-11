@@ -47,10 +47,15 @@
 </select>
 Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" />
 Type in your password: <input type="password" id="password" placeholder="Password" />
+Select how you want the posts sorted: <select name="sort" id="sort">
+    <option value="latest">Latest</option>
+    <option value="top">Top</option>
+</select>
 <button onclick="fetchFootballData()">Get Football Data</button>
 <div id="result"></div>
 
 <script>
+    let allPosts = [];
     async function fetchFootballData() {
         const league = document.getElementById('league').value;
         const apiUrlTable = `https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=${league}`;
@@ -76,12 +81,13 @@ Type in your password: <input type="password" id="password" placeholder="Passwor
             }
         )
         const dataBS = await session_resp.json();
-        const token = await dataBS.accessJwt
+        const token = await dataBS.accessJwt;
+        const sort = document.getElementById('sort').value;
 
         const params = new URLSearchParams({
             q:     `${teamName}`,
             limit: 5,
-            sort:  'latest'
+            sort:  `${sort}`,
         });
 
         const query_resp = await fetch(`https://bsky.social/xrpc/app.bsky.feed.searchPosts?${params}`,{
@@ -110,7 +116,7 @@ Type in your password: <input type="password" id="password" placeholder="Passwor
             <td><a href="${url}" target="_blank">${url}</a></td>
         </tr>`;
         }).join('');
-
+        allPosts = posts;
 
         document.getElementById('result').innerHTML = `<p>In the ${leagueName} the currently best ranked team is ${teamName}</p>
          <table>
@@ -126,6 +132,97 @@ Type in your password: <input type="password" id="password" placeholder="Passwor
         <tbody>${rows}</tbody>
     </table>`;
         }
+</script>
+<h2>Analyze the first post</h2>
+<p>You can now also try analyzing the first post! Choose the language and see a table with a linguistic analysis of the text of the topmost post.</p>
+Choose a language:
+<select name="model" id="model">
+    <option value="english-ewt-ud-2.6-200830">English</option>
+    <option value="french-gsd-ud-2.6-200830">French</option>
+    <option value="dutch-lassysmall-ud-2.6-200830">Dutch</option>
+    <option value="chinese-gsd-ud-2.6-200830">Chinese</option>
+    <option value="croatian-set-ud-2.6-200830">Croatian</option>
+</select>
+<div id="sentAnalysis"></div>
+<button id="analyze" onclick="analyzeSent()">Analyze</button>
+<script>
+    function escapeHtml(text) {
+        return String(text)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+    async function analyzeSent() {
+
+        const firstPost = allPosts[0];
+        const postText = firstPost.record?.text;
+        const model = document.getElementById('model').value;
+
+        if (!postText) {
+            document.getElementById('sentAnalysis').innerHTML = '<p>Please enter a sentence.</p>';
+            return;
+        }
+
+        try {
+            const response = await fetch(`https://lindat.mff.cuni.cz/services/udpipe/api/process?model=${model}&tokenizer&tagger&parser&data=${encodeURIComponent(postText)}`);
+            const data = await response.json();
+            const conllu = data.result;
+
+            const lines = conllu.split('\n');
+            const rows = [];
+
+            for (const line of lines) {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) continue;
+
+                const cols = line.split('\t');
+                if (cols.length === 10) {
+                    rows.push(cols);
+                }
+            }
+
+            document.getElementById('sentAnalysis').innerHTML = `
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>FORM</th>
+                                <th>LEMMA</th>
+                                <th>UPOS</th>
+                                <th>XPOS</th>
+                                <th>FEATS</th>
+                                <th>HEAD</th>
+                                <th>DEPREL</th>
+                                <th>DEPS</th>
+                                <th>MISC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${rows.map(row => `
+                                <tr>
+                                    <td>${row[0]}</td>
+                                    <td>${row[1]}</td>
+                                    <td>${row[2]}</td>
+                                    <td>${row[3]}</td>
+                                    <td>${row[4]}</td>
+                                    <td>${row[5]}</td>
+                                    <td>${row[6]}</td>
+                                    <td>${row[7]}</td>
+                                    <td>${row[8]}</td>
+                                    <td>${row[9]}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        } catch (error) {
+            document.getElementById('sentAnalysis').innerHTML = `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;
+        }
+    }
 </script>
 </body>
 </html>
