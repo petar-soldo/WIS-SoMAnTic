@@ -10,45 +10,34 @@
 
 <header class="kul-header">
     <div class="kul-top-bar">
-        <div class="kul-logo-container"><a href="../index.html" class="kul-logo">KU LEUVEN</a></div>
-        <div class="kul-top-right">
-            <div class="kul-search-box">
-                <input type="text" id="searchInput" placeholder="Zoeken in SoMAnTic">
-                <span id="searchBtn" style="font-size: 1.2rem; cursor: pointer;">⚲</span>
-            </div>
-        </div>
+        <div class="kul-logo-container"><a href="../index.html" class="kul-logo">SoMAnTic@KUL</a></div>
+
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="demographics.html">Demographics</a></li>
-            <li><a href="linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
 <div class="container mt-5 mb-5">
 
     <h1>Live Query Showcase</h1>
-    <p>Select an interactive module below to see social media analytics in action:</p>
+    <h2>What is this showcase about?</h2>
+    <p>The <a href="../guidelines/guidelines.html">guidelines</a> part of these pages deals with the basic theoretical and legal information on querying and researching social media platforms. Here, we want to demonstrate what it actually looks like and how it can be done. <br>
+    The main goal is to show you how social media platforms (in our case <a href="bsky.app">BlueSky</a>) can be queried using their API endpoints. However, we would also like to show you how to combine these with other APIs which could help you with your research and analysis. You will, therefore, find on these pages some demos for using various other API endpoints and a short explanation on how they work.</p>
+    <h2>Our demos</h2>
+    <p>These are our modules you can explore:</p>
 
-    <ul class="list-unstyled mt-4"> <li class="mb-4"> <strong><a href="bluesky-keywords.html">BlueSky Keyword Search</a>:</strong>
-        Query the BlueSky social network in real-time.
+    <ul class="list-unstyled mt-4"> <li class="mb-4"> <strong><a href="bluesky-keywords.html">BlueSky Keyword Search</a> - </strong>
+        this one is straight to the point, here you can search the BlueSky social network for posts containing a certain keyword
     </li>
         <li class="mb-4">
-            <strong><a href="demographics.html">Demographic Predictor</a>:</strong>
-            Predict a user's age, gender, and nationality based on their name.
+            <strong><a href="demographics.html">Demographic Predictor</a> -</strong>
+            here you can predict a user's (or anyone's, for that matter) age, gender and nationality based on their name
         </li>
         <li class="mb-4">
-            <strong><a href="linguistic-analysis.html">Linguistic Post Analysis</a>:</strong>
-            Perform automated tokenization and tagging on text.
+            <strong><a href="linguistic-analysis.html">Linguistic Post Analysis</a> -</strong>
+            use this one to get a CoNLL-U style UD analysis of a sentence, powered by <a href="https://lindat.mff.cuni.cz/">LINDAT</a>
         </li>
         <li class="mb-4">
-            <strong><a href="football-pipeline.html">The Football Pipeline</a>:</strong>
-            Fetch live league tables from global sports APIs.
+            <strong><a href="football-pipeline.html">The Football Pipeline</a> -</strong>
+            all of the above combined in a pipeline based on some football data
         </li>
     </ul>
 
@@ -56,28 +45,9 @@
 
     <h2>Learn More</h2>
     <p>Want to know more about the academic context, our team, and why we built this?</p>
-    <button onclick="window.location.href='about.html'">About SoMAnTic</button>
+    <button onclick="window.location.href='about-project.html'">About SoMAnTic</button>
 
 </div>
-
-<script>
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': 'demographics.html', 'age': 'demographics.html',
-            'linguistic': 'linguistic-analysis.html', 'language': 'linguistic-analysis.html',
-            'bluesky': 'bluesky-keywords.html', 'football': 'football-pipeline.html',
-            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': 'about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
-</script>
 
 </body>
 </html>
