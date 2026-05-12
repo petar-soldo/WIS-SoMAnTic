@@ -13,33 +13,54 @@
         <div class="kul-logo-container">
             <a href="../index.html" class="kul-logo">KU LEUVEN</a>
         </div>
-        <div class="kul-top-right">
-        </div>
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="demographics.html">Demographics</a></li>
-            <li><a href="linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
 <div class="container mt-5 mb-5">
-    <h1>Analyzing the demographics of users</h1>
-    <p>One of the things you can do as a part of social media analysis is to analyze <a href="https://socialsci.libretexts.org/Bookshelves/Communication/Public_Speaking/Exploring_Public_Speaking_4e_(Barton_and_Tucker)/02%3A_Audience_Analysis_and_Listening/2.02%3A_Demographic_Characteristics" target="_blank">demographic characteristics</a> of the users or people mentioned in posts, such as age, gender or nationality. This can be useful to better understand which parts of the population are linked to the phenomonenon you are exploring.</p>
+    <div class="page-layout">
 
-    <p>While you could get the info for this from user metadata directly, let's assume you do not have access to it (which is most often the case) and you want to find it out by <b>using their names</b>. In order to do this, we will use three APIs by the Danish company <i>Demografix ApS</i> to get a prediction of a person's gender, nationality and age just by using their name.</p>
+        <aside class="contents-sidebar">
+            <nav class="toc-nav">
+                <p class="contents-title">Platform Navigation</p>
+                <ol class="toc-list">
+                    <li><a href="../index.html">1. Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li>
+                        <a href="research-showcase-mainpage.html">3. Showcase</a>
+                        <ol class="toc-sublist">
+                            <li><a href="bluesky-keywords.html">3.1 BlueSky</a></li>
+                            <li>
+                                <a href="demographics.html" class="active-page">3.2 Demographics</a>
+                                <ol class="toc-sublist page-toc">
+                                    <li><a href="#intro">- Analyzing Demographics</a></li>
+                                    <li><a href="#check-name">- Check the Name!</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="linguistic-analysis.html">3.3 Linguistics</a></li>
+                            <li><a href="football-pipeline.html">3.4 Football</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="about-project.html">4. About Project</a></li>
+                    <li><a href="about-team.html">5. About Team</a></li>
+                </ol>
+            </nav>
+        </aside>
 
-    <h2>Check the name!</h2>
-    <p>Let's see how it works. Type in a name and see which results will you get.</p>
+        <main class="main-content">
+            <h1 id="intro">Analyzing the demographics of users</h1>
+            <p>One of the things you can do as a part of social media analysis is to analyze <a href="https://socialsci.libretexts.org/Bookshelves/Communication/Public_Speaking/Exploring_Public_Speaking_4e_(Barton_and_Tucker)/02%3A_Audience_Analysis_and_Listening/2.02%3A_Demographic_Characteristics" target="_blank">demographic characteristics</a> of the users or people mentioned in posts, such as age, gender or nationality. This can be useful to better understand which parts of the population are linked to the phenomonenon you are exploring.</p>
 
-    <input type="text" id="nameInput" placeholder="Enter a name">
-    <button onclick="checkName()">Check the name!</button>
-    <div id="nameResults"></div>
+            <p>While you could get the info for this from user metadata directly, let's assume you do not have access to it (which is most often the case) and you want to find it out by <b>using their names</b>. In order to do this, we will use three APIs by the Danish company <i>Demografix ApS</i> to get a prediction of a person's gender, nationality and age just by using their name.</p>
+
+            <h2 id="check-name">Check the name!</h2>
+            <p>Let's see how it works. Type in a name and see which results will you get.</p>
+
+            <input type="text" id="nameInput" placeholder="Enter a name">
+            <button onclick="checkName()">Check the name!</button>
+            <div id="nameResults"></div>
+        </main>
+
+    </div>
 </div>
 
 <script>
@@ -86,24 +107,6 @@
             </table>
         `;
     }
-
-    // Global Search Logic
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': 'demographics.html', 'age': 'demographics.html',
-            'linguistic': 'linguistic-analysis.html', 'language': 'linguistic-analysis.html',
-            'bluesky': 'bluesky-keywords.html', 'football': 'football-pipeline.html',
-            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': 'about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
 </script>
 </body>
 </html>

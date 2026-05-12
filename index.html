@@ -14,7 +14,7 @@
             padding: 80px 20px;
             text-align: center;
             border-bottom: 6px solid var(--kul-sedona-blue);
-            margin-top: -50px;
+            margin-top: 0 !important;
             margin-bottom: 50px;
         }
         .home-hero h1 { color: #ffffff; border-bottom: none; font-size: 3rem; margin-bottom: 20px; }
@@ -37,19 +37,9 @@
 <header class="kul-header">
     <div class="kul-top-bar">
         <div class="kul-logo-container">
-            <a href="../index.html" class="kul-logo">SoMAnTic@KUL</a>
+            <a href="index.html" class="kul-logo">SoMAnTic@KUL</a>
         </div>
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="research-showcase-pages/demographics.html">Demographics</a></li>
-            <li><a href="research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="research-showcase-pages/football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
 <header class="home-hero">
@@ -63,28 +53,51 @@
 </header>
 
 <div class="container mb-5">
-    <h2 class="text-center mb-4">Explore the Platform</h2>
+    <div class="page-layout">
 
-    <div class="row g-4 mb-5 justify-content-center">
-        <div class="col-md-4 col-sm-12">
-            <div class="feature-card">
-                <h3>About SoMAnTic</h3>
-                <p>Read about SoMAnTic and the motivation behind it.</p>
-                <button onclick="window.location.href='research-showcase-pages/about-project.html'">Read About SoMAnTic</button>
-            </div>
-        </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="feature-card">
-                    <h3>About Group 7</h3>
-                    <p>Meet the <strong><i>Almost Belgian</i></strong> team.</p>
-                    <button onclick="window.location.href='research-showcase-pages/about-team.html'">Read About Us</button>
+        <aside class="contents-sidebar">
+            <nav class="toc-nav">
+                <p class="contents-title">Platform Navigation</p>
+                <ol class="toc-list">
+                    <li><a href="index.html" class="active-page">1. Home</a></li>
+                    <li><a href="guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li>
+                        <a href="research-showcase-pages/research-showcase-mainpage.html">3. Showcase</a>
+                        <ol class="toc-sublist">
+                            <li><a href="research-showcase-pages/bluesky-keywords.html">3.1 BlueSky</a></li>
+                            <li><a href="research-showcase-pages/demographics.html">3.2 Demographics</a></li>
+                            <li><a href="research-showcase-pages/linguistic-analysis.html">3.3 Linguistics</a></li>
+                            <li><a href="research-showcase-pages/football-pipeline.html">3.4 Football</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="research-showcase-pages/about-project.html">4. About Project</a></li>
+                    <li><a href="research-showcase-pages/about-team.html">5. About Team</a></li>
+                </ol>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <h2 class="text-center mb-4">Explore the Platform</h2>
+            <div class="row g-4 mb-5 justify-content-center">
+                <div class="col-md-5 col-sm-12">
+                    <div class="feature-card">
+                        <h3>About SoMAnTic</h3>
+                        <p>Read about SoMAnTic and the motivation behind it.</p>
+                        <button onclick="window.location.href='research-showcase-pages/about-project.html'">Read About SoMAnTic</button>
+                    </div>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <div class="feature-card">
+                        <h3>About Group 7</h3>
+                        <p>Meet the <strong><i>Almost Belgian</i></strong> team.</p>
+                        <button onclick="window.location.href='research-showcase-pages/about-team.html'">Read About Us</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
+
     </div>
 </div>
-
-
 
 <footer class="footer">
     <p>Developed for the Web Information Systems course @ KU Leuven (Academic Year 2025-2026).</p>

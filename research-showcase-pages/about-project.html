@@ -8,28 +8,10 @@
     <link rel="stylesheet" href="../CSS/main.css">
 
     <style>
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .tech-list li {
-            margin-bottom: 10px;
-        }
-        .tech-list strong {
-            color: var(--kul-dark-blue);
-        }
-
-        .btn-kul {
-            background-color: var(--kul-sedona-blue);
-            color: #ffffff;
-            border: none;
-            transition: background-color 0.2s ease;
-        }
-        .btn-kul:hover, .btn-kul:focus {
-            background-color: var(--kul-dark-blue);
-            color: #ffffff;
-        }
+        .tech-list li { margin-bottom: 10px; }
+        .tech-list strong { color: var(--kul-dark-blue); }
+        .btn-kul { background-color: var(--kul-sedona-blue); color: #ffffff; border: none; transition: background-color 0.2s ease; }
+        .btn-kul:hover, .btn-kul:focus { background-color: var(--kul-dark-blue); color: #ffffff; }
     </style>
 </head>
 <body>
@@ -37,49 +19,45 @@
 <header class="kul-header">
     <div class="kul-top-bar">
         <div class="kul-logo-container"><a href="../index.html" class="kul-logo">KU LEUVEN</a></div>
-        <div class="kul-top-right"></div>
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
-            <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
-<div class="container mt-5 mb-5 about-container">
+<div class="container mt-5 mb-5">
+    <div class="page-layout">
 
-    <h1 class="mb-4">The SoMAnTic Project</h1>
+        <aside class="contents-sidebar">
+            <nav class="toc-nav">
+                <p class="contents-title">Platform Navigation</p>
+                <ol class="toc-list">
+                    <li><a href="../index.html">1. Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li>
+                        <a href="research-showcase-mainpage.html">3. Showcase</a>
+                        <ol class="toc-sublist">
+                            <li><a href="bluesky-keywords.html">3.1 BlueSky</a></li>
+                            <li><a href="demographics.html">3.2 Demographics</a></li>
+                            <li><a href="linguistic-analysis.html">3.3 Linguistics</a></li>
+                            <li><a href="football-pipeline.html">3.4 Football</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="about-project.html" class="active-page">4. About Project</a></li>
+                    <li><a href="about-team.html">5. About Team</a></li>
+                </ol>
+            </nav>
+        </aside>
 
-    <p class="lead mb-5">The <strong>Social Media Analysis Toolbox (SoMAnTic)</strong> was developed as part of the <i><a href="https://onderwijsaanbod.kuleuven.be/syllabi/e/G0Y11AE">Web Information Systems</a></i> course within the Master of Digital Humanities at KU Leuven.</p>
+        <main class="main-content">
+            <h1 class="mb-4">The SoMAnTic Project</h1>
+            <p class="lead mb-5">The <strong>Social Media Analysis Toolbox (SoMAnTic)</strong> was developed as part of the <i><a href="https://onderwijsaanbod.kuleuven.be/syllabi/e/G0Y11AE">Web Information Systems</a></i> course within the Master of Digital Humanities at KU Leuven.</p>
 
-    <h2 class="mt-4">The Problem</h2>
-    <p>Social media platforms have become central to public discourse, cultural exchange, and political mobilization. However, accessing and analyzing data from Very Large Online Platforms (VLOPs) has become increasingly difficult for researchers. Due to strict data protection measures (such as the DSA) and closed APIs, researchers are often forced to work in highly restrictive Virtual Computing Environments, limiting the tools they can use and preventing them from combining datasets easily.</p>
+            <h2 class="mt-4">The Problem</h2>
+            <p>Social media platforms have become central to public discourse, cultural exchange, and political mobilization. However, accessing and analyzing data from Very Large Online Platforms (VLOPs) has become increasingly difficult for researchers. Due to strict data protection measures (such as the DSA) and closed APIs, researchers are often forced to work in highly restrictive Virtual Computing Environments, limiting the tools they can use and preventing them from combining datasets easily.</p>
 
-    <h2 class="mt-4">Our Solution</h2>
-    <p>SoMAnTic aims to bridge this gap. Rather than acting as a data scraper, our platform is designed to provide an accessible interface for analyzing <em>already retrieved</em> datasets. We built this tool specifically for researchers in the humanities and social sciences who may not have extensive programming backgrounds.</p>
-    <p>By offering an interactive web interface, SoMAnTic allows users to easily navigate and analyze complex data, featuring tools for demographic breakdowns, sentiment analysis, and linguistic tracking.</p>
+            <h2 class="mt-4">Our Solution</h2>
+            <p>SoMAnTic aims to bridge this gap. Rather than acting as a data scraper, our platform is designed to provide an accessible interface for analyzing <em>already retrieved</em> datasets. We built this tool specifically for researchers in the humanities and social sciences who may not have extensive programming backgrounds.</p>
+            <p>By offering an interactive web interface, SoMAnTic allows users to easily navigate and analyze complex data, featuring tools for demographic breakdowns, sentiment analysis, and linguistic tracking.</p>
 
-    <h2 class="mt-5">Under the Hood</h2>
-    <p>SoMAnTic is built to process and analyze social media datasets efficiently. Our analytical pipeline relies on a combination of robust technologies:</p>
-    <ul class="tech-list">
-        <li><strong>Frontend Interface:</strong> HTML5, CSS3, and Bootstrap 5 for a responsive, user-friendly experience.</li>
-        <li><strong>Data Processing:</strong> <i>[Update this: List your Python libraries here, e.g., Pandas, spaCy, NLTK, matplotlib]</i></li>
-        <li><strong>Data Sources:</strong> Extracted datasets from Very Large Online Platforms (VLOPs) and the BlueSky API.</li>
-    </ul>
-
-    <h2 class="mt-5">Open Source Code</h2>
-    <p>Transparency and reproducibility are core values of Digital Humanities research. You can view our entire codebase, project history, and methodology in our public repository.</p>
-
-    <a href="https://github.com/petar-soldo/WIS-SoMAnTic" target="_blank" class="btn btn-kul mt-3 mb-4">
-        View SoMAnTic on GitHub
-    </a>
-
-</div>
-
-</body>
-</html>
+            <h2 class="mt-5">Under the Hood</h2>
+            <p>SoMAnTic is built to process and analyze social media datasets efficiently. Our analytical pipeline relies on a combination of robust technologies:</p>
+            <ul class="tech-list">
+                <li><strong>Frontend Interface:</strong> HTML5, CSS3, and Bootstrap 5 for a responsive, user

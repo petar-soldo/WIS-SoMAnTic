@@ -6,7 +6,6 @@
     --kul-light-blue: #52BDEC;
     --kul-accent-orange: #DD8A2E;
     --kul-bg-attention: #E8F5F6;
-
     --kul-text: #333333;
     --kul-bg-page: #FFFFFF;
     --kul-border: #E3E3E3;
@@ -27,7 +26,9 @@ body {
     color: var(--kul-text);
     background-color: var(--kul-bg-page);
     padding: 40px 20px;
+    padding-top: 50px !important;
 }
+
 .page-layout {
     display: grid;
     grid-template-columns: 240px 1fr;
@@ -35,11 +36,12 @@ body {
     width: 100%;
     align-items: start;
 }
-.main-content{
+
+.main-content {
     width: 100%;
     max-width: 800px;
 }
-/*typography*/
+
 h1, h2, h3, h4, h5, h6 {
     color: darkblue;
     margin-top: 1.5em;
@@ -75,7 +77,6 @@ a:hover, a:focus {
     color: var(--kul-accent-orange);
 }
 
-/* Forms, Inputs, and Buttons */
 input[type="text"],
 input[type="password"],
 select,
@@ -121,7 +122,6 @@ button:hover, button:focus {
     background-color: var(--kul-dark-blue);
 }
 
-/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -131,8 +131,8 @@ table {
 
 .table-responsive-wrapper {
     width: 100%;
-    overflow-x: auto; /* Allows horizontal scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     margin-bottom: 25px;
 }
 
@@ -147,7 +147,6 @@ th, td {
     border: 1px solid var(--kul-border);
 }
 
-/* Alternating row colors matching standard Plone layout */
 tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
@@ -156,7 +155,6 @@ tbody tr:hover {
     background-color: var(--kul-bg-attention);
 }
 
-/* Details and Summaries (Dropdowns)*/
 details {
     background-color: #fcfcfc;
     border: 1px solid var(--kul-border);
@@ -177,46 +175,27 @@ details p, details ul {
     margin-bottom: 0;
 }
 
-/* Dynamic Results Areas (Attention Boxes) */
 #nameResults, #result, #sentAnalysis {
-    margin-top: 25px;
-    padding: 20px 25px;
-    background-color: var(--kul-bg-attention);
-    border-left: 5px solid var(--kul-dark-blue);
+    margin-top: 20px;
+    margin-bottom: 25px;
+    padding: 12px 16px;
+    width: fit-content;
+    max-width: 100%;
+    background-color: #F0F4F8;
+    border-left: 4px solid var(--kul-dark-blue);
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 #nameResults h3, #result h3, #sentAnalysis h3 {
     margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
     color: var(--kul-dark-blue);
 }
 
-.contents-sidebar {
-    width: 220px;
-}
-
-.contents-sidebar nav {
-    background-color: var(--kul-bg-attention);
-    border-left: 4px solid var(--kul-sedona-blue);
-    border-radius: 0 6px 6px 0;
-    padding: 16px 18px;
-}
-.contents-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--kul-dark-blue);
-    margin: 0 0 10px;
-}
-
-.contents-sidebar ol {
-    margin: 0;
-    padding-left: 18px;
-}
-
-.contents-sidebar li {
-    margin-bottom: 8px;
-    font-size: 0.88rem;
+#nameResults ul, #nameResults p, #result p, #sentAnalysis p {
+    margin-bottom: 0;
 }
 
 .platform {
@@ -239,7 +218,6 @@ details p, details ul {
     font-family: 'Open Sans', 'Segoe UI', sans-serif;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
 
 .kul-top-bar {
     background-color: var(--kul-dark-blue);
@@ -280,58 +258,123 @@ details p, details ul {
     font-weight: 600;
 }
 
-
 .kul-main-nav {
-    background-color: #ffffff;
-    border-bottom: 1px solid var(--kul-border);
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Centers the links like in the picture */
-}
-
-.kul-nav-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 40px; /* Space between links */
-}
-
-.kul-nav-list a {
-    color: var(--kul-dark-blue);
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-decoration: none;
-    padding: 10px 0;
-    transition: color 0.2s ease;
-}
-
-.kul-nav-list a:hover {
-    color: var(--kul-accent-orange);
-    text-decoration: none;
-}
-
-body {
-    padding-top: 140px !important;
+    display: none !important;
 }
 
 .team-list {
-    list-style: none; /* Removes the bullet points */
+    list-style: none;
     padding: 0;
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
     max-width: 500px;
 }
+
 .team-list li {
-    background-color: var(--kul-bg-attention); /* Uses your light blue background */
-    border-left: 4px solid var(--kul-sedona-blue); /* Adds the KU Leuven accent line */
+    background-color: var(--kul-bg-attention);
+    border-left: 4px solid var(--kul-sedona-blue);
     padding: 15px 20px;
     border-radius: 4px;
 }
 
-/* mobile */
+.contents-sidebar {
+    position: sticky;
+    top: 80px !important;
+    width: 240px;
+    height: fit-content;
+    background-color: var(--kul-bg-attention);
+    padding: 20px;
+    border-radius: 4px;
+    border-top: 4px solid var(--kul-sedona-blue);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    max-height: calc(100vh - 100px) !important;
+    overflow-y: auto !important;
+}
+
+.contents-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.contents-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contents-sidebar::-webkit-scrollbar-thumb {
+    background-color: #c4d9dc;
+    border-radius: 10px;
+}
+
+.contents-sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--kul-sedona-blue);
+}
+
+.contents-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--kul-dark-blue);
+    margin: 0 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #d1e5e8;
+}
+
+.toc-list, .toc-sublist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-sublist {
+    padding-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-left: 2px solid var(--kul-sedona-blue);
+    margin-left: 5px;
+}
+
+.toc-list a {
+    color: var(--kul-dark-blue);
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.toc-sublist a {
+    font-weight: 400;
+    color: #444444;
+}
+
+.toc-list a:hover {
+    color: var(--kul-accent-orange);
+    transform: translateX(3px);
+}
+
+.toc-list a.active-page {
+    color: var(--kul-accent-orange) !important;
+    font-weight: 700;
+}
+
+.page-toc {
+    border-left: 2px dashed #b5d5db !important;
+    margin-left: 5px !important;
+    margin-bottom: 15px !important;
+}
+
+.page-toc a {
+    font-size: 0.85rem !important;
+    color: #666666 !important;
+    font-weight: 400 !important;
+}
+
+.page-toc a:hover {
+    color: var(--kul-sedona-blue) !important;
+}
+
 @media (max-width: 768px) {
     .kul-search-box {
         display: none;
@@ -343,33 +386,25 @@ body {
     }
 
     .contents-sidebar {
+        position: relative;
+        top: 0 !important;
         width: 100%;
-        display: block;
+        margin-bottom: 30px;
+        border-top: none;
+        border-left: 4px solid var(--kul-sedona-blue);
+        max-height: none !important;
+        overflow-y: visible !important;
     }
 
-    .contents-sidebar nav {
-        border-left: none;
-        border-top: 4px solid var(--kul-sedona-blue);
-        border-radius: 6px;
+    h1 {
+        font-size: 1.8rem;
     }
 
-    .kul-main-nav {
-        height: auto;
-        padding: 10px 0;
+    h2 {
+        font-size: 1.4rem;
     }
-
-    .kul-nav-list {
-        gap: 15px;
-        font-size: 0.9rem;
-        flex-wrap: wrap;
-        padding: 0 10px;
-        justify-content: center;
-    }
-
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.4rem; }
 
     body {
-        padding-top: 110px !important;
+        padding-top: 70px !important;
     }
 }

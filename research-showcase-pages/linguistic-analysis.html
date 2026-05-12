@@ -13,41 +13,62 @@
         <div class="kul-logo-container">
             <a href="../index.html" class="kul-logo">KU LEUVEN</a>
         </div>
-        <div class="kul-top-right">
-        </div>
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="demographics.html">Demographics</a></li>
-            <li><a href="linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
 <div class="container mt-5 mb-5">
-    <h1>Linguistic analysis of posts</h1>
-    <p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing" target="_blank">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php" target="_blank">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through its <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php" target="_blank">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>
+    <div class="page-layout">
 
-    <h2>Analyze your post!</h2>
-    <p>1. Write your sentence:</p>
-    <textarea id="sentence" name="sentence" placeholder="Write your sentence here..." rows="5"></textarea>
+        <aside class="contents-sidebar">
+            <nav class="toc-nav">
+                <p class="contents-title">Platform Navigation</p>
+                <ol class="toc-list">
+                    <li><a href="../index.html">1. Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li>
+                        <a href="research-showcase-mainpage.html">3. Showcase</a>
+                        <ol class="toc-sublist">
+                            <li><a href="bluesky-keywords.html">3.1 BlueSky</a></li>
+                            <li><a href="demographics.html">3.2 Demographics</a></li>
+                            <li>
+                                <a href="linguistic-analysis.html" class="active-page">3.3 Linguistics</a>
+                                <ol class="toc-sublist page-toc">
+                                    <li><a href="#intro">- Linguistic Analysis</a></li>
+                                    <li><a href="#analyze-post">- Analyze your post!</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="football-pipeline.html">3.4 Football</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="about-project.html">4. About Project</a></li>
+                    <li><a href="about-team.html">5. About Team</a></li>
+                </ol>
+            </nav>
+        </aside>
 
-    <p>2. Choose a model:</p>
-    <select name="model" id="model">
-        <option value="english-ewt-ud-2.6-200830">English</option>
-        <option value="french-gsd-ud-2.6-200830">French</option>
-        <option value="dutch-lassysmall-ud-2.6-200830">Dutch</option>
-        <option value="chinese-gsd-ud-2.6-200830">Chinese</option>
-        <option value="croatian-set-ud-2.6-200830">Croatian</option>
-    </select>
-    <br>
-    <button onclick="analyzeSent()">Analyze sentence</button>
+        <main class="main-content">
+            <h1 id="intro">Linguistic analysis of posts</h1>
+            <p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing" target="_blank">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php" target="_blank">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through its <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php" target="_blank">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>
 
-    <div id="sentAnalysis"></div>
+            <h2 id="analyze-post">Analyze your post!</h2>
+            <p>1. Write your sentence:</p>
+            <textarea id="sentence" name="sentence" placeholder="Write your sentence here..." rows="5"></textarea>
+
+            <p>2. Choose a model:</p>
+            <select name="model" id="model">
+                <option value="english-ewt-ud-2.6-200830">English</option>
+                <option value="french-gsd-ud-2.6-200830">French</option>
+                <option value="dutch-lassysmall-ud-2.6-200830">Dutch</option>
+                <option value="chinese-gsd-ud-2.6-200830">Chinese</option>
+                <option value="croatian-set-ud-2.6-200830">Croatian</option>
+            </select>
+            <br><br>
+            <button onclick="analyzeSent()">Analyze sentence</button>
+
+            <div id="sentAnalysis"></div>
+        </main>
+
+    </div>
 </div>
 
 <script>
@@ -128,24 +149,6 @@
             document.getElementById('sentAnalysis').innerHTML = `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;
         }
     }
-
-    // Global Search Logic
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': 'demographics.html', 'age': 'demographics.html',
-            'linguistic': 'linguistic-analysis.html', 'language': 'linguistic-analysis.html',
-            'bluesky': 'bluesky-keywords.html', 'football': 'football-pipeline.html',
-            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': 'about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
 </script>
 </body>
 </html>

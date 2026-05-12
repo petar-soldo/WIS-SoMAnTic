@@ -13,53 +13,53 @@
         <div class="kul-logo-container">
             <a href="../index.html" class="kul-logo">KU LEUVEN</a>
         </div>
-        <div class="kul-top-right">
-        </div>
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="guidelines.html">Guidelines</a></li>
-            <li><a href="../research-showcase-pages/bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="../research-showcase-pages/demographics.html">Demographics</a></li>
-            <li><a href="../research-showcase-pages/linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="../research-showcase-pages/football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
 <div class="container mt-5 mb-5">
-
     <div class="page-layout">
 
         <aside class="contents-sidebar">
-            <nav>
-                <p class="contents-title">Contents</p>
-                <ol>
-                    <li><a href="#api-definition">What are APIs</a></li>
-                    <li><a href="#api-data">What kind of data expect from APIs</a></li>
-                    <li><a href="#api-access">How to access APIs</a></li>
-                    <li><a href="#api-limitations">Which limitations to consider</a></li>
-                    <li><a href="#api-links">Useful links</a></li>
+            <nav class="toc-nav">
+                <p class="contents-title">Platform Navigation</p>
+                <ol class="toc-list">
+                    <li><a href="../index.html">1. Home</a></li>
+                    <li>
+                        <a href="guidelines.html" class="active-page">2. Guidelines</a>
+                        <ol class="toc-sublist page-toc">
+                            <li><a href="#api-definition">- What are APIs</a></li>
+                            <li><a href="#api-data">- Data from APIs</a></li>
+                            <li><a href="#api-access">- Accessing APIs</a></li>
+                            <li><a href="#api-limitations">- API limitations</a></li>
+                            <li><a href="#api-links">- Useful links</a></li>
+                        </ol>
+                    </li>
+                    <li>
+                        <a href="../research-showcase-pages/research-showcase-mainpage.html">3. Showcase</a>
+                        <ol class="toc-sublist">
+                            <li><a href="../research-showcase-pages/bluesky-keywords.html">3.1 BlueSky</a></li>
+                            <li><a href="../research-showcase-pages/demographics.html">3.2 Demographics</a></li>
+                            <li><a href="../research-showcase-pages/linguistic-analysis.html">3.3 Linguistics</a></li>
+                            <li><a href="../research-showcase-pages/football-pipeline.html">3.4 Football</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="../research-showcase-pages/about-project.html">4. About Project</a></li>
+                    <li><a href="../research-showcase-pages/about-team.html">5. About Team</a></li>
                 </ol>
             </nav>
         </aside>
 
         <main class="main-content">
             <h1>Guidelines for social media API access</h1>
-
             <p>This page is dedicated to explaining what APIs can and cannot do.</p>
 
             <h2 id="api-definition">1. APIs definition</h2>
-            <p>
-                An API, for Application Programming Interface, is a tool provided by online platforms to allow users to get data from a website in a machine-readable format.
-                <br> For research purposes, social media APIs can be a valuable source of information, by providing researchers with important amounts of data, easily accessible and outside any legal consideration.
-            </p>
+            <p>An API, for Application Programming Interface, is a tool provided by online platforms to allow users to get data from a website in a machine-readable format.
+                <br> For research purposes, social media APIs can be a valuable source of information, by providing researchers with important amounts of data, easily accessible and outside any legal consideration.</p>
 
             <h2 id="api-data">2. What kind of data to expect from an API?</h2>
             <p>APIs return data in a structured format. Even if it mainly consists of texts (for example text from a post or a comment) and numbers (number of likes, comments, reshares, time of the publication, etc.) they can also contain sounds, pictures and videos. Often, this type of content isn’t directly put in the downloadable file but can be retrieved via a specific URL and then downloaded. Be still aware that these links often expire after a short time, and it’s then not possible to retrieve the media.
-                <br> For example, here is the kind of data you can find in a social media API.
-            </p>
+                <br> For example, here is the kind of data you can find in a social media API.</p>
 
             <table>
                 <thead>
@@ -116,8 +116,7 @@
 
             <h3>3.2 Special treatments of VLOPs</h3>
             <p>Under the DSA Article 40(12), platforms having at least 45 millions of users a month (which equals approximatively 10% of the European citizens) have to give access without undue delay to researchers studying systemic risks within the European Union. The social media falling in this category are Facebook, Instagram, LinkedIn, Pinterest, Snapchat, TikTok, X and YouTube.
-                <br>Unfortunately, getting access to these APIs, even for researchers studying systemic risks, is a difficult journey. Platforms usually expect from researchers to be able to fulfil certain requirements, that vary from one platform to another. Besides the notion of systemic risks, researchers have also to prove that they can handle personal data protection.
-            </p>
+                <br>Unfortunately, getting access to these APIs, even for researchers studying systemic risks, is a difficult journey. Platforms usually expect from researchers to be able to fulfil certain requirements, that vary from one platform to another. Besides the notion of systemic risks, researchers have also to prove that they can handle personal data protection.</p>
 
             <details>
                 <summary>Learn more about systemic risks</summary>
@@ -151,10 +150,8 @@
             <p> Smaller platforms are not bound by the DSA to give access to their API to researchers. It is then up to them to grant such access freely. Most of them don’t, except Bluesky which serves as a basis in this website. </p>
 
             <h2 id="api-limitations">4. APIs limitations</h2>
-            <p>
-                Before starting the request process of APIs, be aware of certain limitations that can hinder research projects.
-                <br> The limitations stated here are mainly about VLOPs, but can still be extended to other social medi.
-            </p>
+            <p>Before starting the request process of APIs, be aware of certain limitations that can hinder research projects.
+                <br> The limitations stated here are mainly about VLOPs, but can still be extended to other social medi.</p>
 
             <ul>
                 <li><strong>Time constraints:</strong> The platform first has to approve the researcher’s request to its API. Timeframes are long and also untransparent. If some social media (like Meta) state they’ll take a decision within a few weeks, it can in the end take several months (sometimes more than two years) before the researcher gets an answer. Such delays seriously hinder research. </li>
@@ -251,25 +248,6 @@
         </main>
     </div>
 </div>
-
-<script>
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': '../research-showcase-pages/demographics.html', 'age': '../research-showcase-pages/demographics.html',
-            'linguistic': '../research-showcase-pages/linguistic-analysis.html', 'language': '../research-showcase-pages/linguistic-analysis.html',
-            'bluesky': '../research-showcase-pages/bluesky-keywords.html', 'football': '../research-showcase-pages/football-pipeline.html',
-            'guideline': 'guidelines.html', 'dsa': 'guidelines.html', 'about': '../research-showcase-pages/about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
-</script>
 
 </body>
 </html>

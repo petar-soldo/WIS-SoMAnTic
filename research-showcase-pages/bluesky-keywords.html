@@ -14,40 +14,66 @@
             <a href="../index.html" class="kul-logo">SoMAnTic@KUL</a>
         </div>
     </div>
-    <nav class="kul-main-nav">
-        <ul class="kul-nav-list">
-            <li><a href="../index.html">Home</a></li>
-            <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
-            <li><a href="bluesky-keywords.html">BlueSky</a></li>
-            <li><a href="demographics.html">Demographics</a></li>
-            <li><a href="linguistic-analysis.html">Linguistics</a></li>
-            <li><a href="football-pipeline.html">Football</a></li>
-        </ul>
-    </nav>
 </header>
 
 <div class="container mt-5 mb-5">
-    <h1>How to query BlueSky posts?</h1>
-    <p>Hello, researcher! In this demo, you can test searching for BlueSky posts, based on keywords you find interesting. <p>It was made to showcase how querying social media in general could look like. We are using BlueSky API to do it, because it is the most accessible (relatively) widely used social media platform today (a phenomenon you can read about more in <a href="../guidelines/guidelines.html">our guidlines.</a>) The small application itself is quite simple - you just enter a keyword you would like to find posts about, your BlueSky handle (i.e. your username) and your BlueSky password (you can generate an <a href="https://blueskyfeeds.com/faq-app-password"> app password</a> not to use your personal one) and it will return 10 most recent posts from BlueSky which contain that word, together with some metadata.</p>
-    <p><a onclick="ScrollDown()" style="cursor: pointer;"> Scroll down</a> to test how it works!</p>
-    <script>
-        function ScrollDown(){
-        document.getElementById("searchArea").scrollIntoView({ behavior: 'smooth' });
-        }
-    </script>
+    <div class="page-layout">
 
-    <h2>How does it work?</h2>
-    <p>This small demo works by taking you keyword and posting it to a <a href="https://docs.bsky.app/">BlueSky API</a>. To get your results, we actually have to make two API calls. The first API call establishes a connection by using your handle (i.e. username) and password. When we post them, the API sends us an 'authorization token' in return. We use this token in the second API call. We send it to another API point, together with your keyword and in return we get the posts we are interested in. We access the data we need and have the script print out a nice table!</p>
+        <aside class="contents-sidebar">
+            <nav class="toc-nav">
+                <p class="contents-title">Platform Navigation</p>
+                <ol class="toc-list">
+                    <li><a href="../index.html">1. Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li>
+                        <a href="research-showcase-mainpage.html">3. Showcase</a>
+                        <ol class="toc-sublist">
+                            <li>
+                                <a href="bluesky-keywords.html" class="active-page">3.1 BlueSky</a>
+                                <ol class="toc-sublist page-toc">
+                                    <li><a href="#intro">- How to query BlueSky</a></li>
+                                    <li><a href="#how-it-works">- How does it work?</a></li>
+                                    <li><a href="#use-cases">- What can I use it for?</a></li>
+                                    <li><a href="#searchArea">- Search BlueSky!</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="demographics.html">3.2 Demographics</a></li>
+                            <li><a href="linguistic-analysis.html">3.3 Linguistics</a></li>
+                            <li><a href="football-pipeline.html">3.4 Football</a></li>
+                        </ol>
+                    </li>
+                    <li><a href="about-project.html">4. About Project</a></li>
+                    <li><a href="about-team.html">5. About Team</a></li>
+                </ol>
+            </nav>
+        </aside>
 
-    <h2>What can I use it for?</h2>
-    <p>This is a very simple and direct content analysis method. Think about events or people you are interested in or whose surrounding discourse you would like to analyze. Just type them in and see what users of BlueSky have to say about it! </p>
+        <main class="main-content">
+            <h1 id="intro">How to query BlueSky posts?</h1>
+            <p>Hello, researcher! In this demo, you can test searching for BlueSky posts, based on keywords you find interesting.</p>
+            <p>It was made to showcase how querying social media in general could look like. We are using BlueSky API to do it, because it is the most accessible (relatively) widely used social media platform today (a phenomenon you can read about more in <a href="../guidelines/guidelines.html">our guidlines.</a>) The small application itself is quite simple - you just enter a keyword you would like to find posts about, your BlueSky handle (i.e. your username) and your BlueSky password (you can generate an <a href="https://blueskyfeeds.com/faq-app-password"> app password</a> not to use your personal one) and it will return 10 most recent posts from BlueSky which contain that word, together with some metadata.</p>
+            <p><a onclick="ScrollDown()" style="cursor: pointer; color: var(--kul-sedona-blue); text-decoration: underline;"> Scroll down</a> to test how it works!</p>
+            <script>
+                function ScrollDown(){
+                    document.getElementById("searchArea").scrollIntoView({ behavior: 'smooth' });
+                }
+            </script>
 
-    <h1 id="searchArea">Search BlueSky!</h1>
-    <p>Select a keyword: <input type="text" id="keyword" placeholder="Enter a keyword">
-    Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" />
-    Type in your password: <input type="password" id="password" placeholder="Password" />
-        <button onclick="searchPost()">Search BlueSky</button> </p>
-    <div id="blueskyResults"></div>
+            <h2 id="how-it-works">How does it work?</h2>
+            <p>This small demo works by taking you keyword and posting it to a <a href="https://docs.bsky.app/">BlueSky API</a>. To get your results, we actually have to make two API calls. The first API call establishes a connection by using your handle (i.e. username) and password. When we post them, the API sends us an 'authorization token' in return. We use this token in the second API call. We send it to another API point, together with your keyword and in return we get the posts we are interested in. We access the data we need and have the script print out a nice table!</p>
+
+            <h2 id="use-cases">What can I use it for?</h2>
+            <p>This is a very simple and direct content analysis method. Think about events or people you are interested in or whose surrounding discourse you would like to analyze. Just type them in and see what users of BlueSky have to say about it! </p>
+
+            <h1 id="searchArea">Search BlueSky!</h1>
+            <p>Select a keyword: <input type="text" id="keyword" placeholder="Enter a keyword"></p>
+            <p>Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" /></p>
+            <p>Type in your password: <input type="password" id="password" placeholder="Password" /></p>
+            <button onclick="searchPost()">Search BlueSky</button>
+            <div id="blueskyResults"></div>
+        </main>
+
+    </div>
 </div>
 
 <script>
@@ -77,7 +103,6 @@
         });
         const dataQ = await query_resp.json();
         const posts = dataQ.posts || [];
-
 
         const rows = posts.map(p => {
             const date = new Date(p.record?.createdAt).toLocaleDateString();
@@ -112,7 +137,6 @@
         <tbody>${rows}</tbody>
     </table>`;
     }
-
 </script>
 </body>
 </html>
