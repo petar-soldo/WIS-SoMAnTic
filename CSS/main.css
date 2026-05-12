@@ -16,6 +16,11 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 160px;
+}
+
 body {
     font-family: 'Open Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -124,6 +129,13 @@ table {
     background-color: #ffffff;
 }
 
+.table-responsive-wrapper {
+    width: 100%;
+    overflow-x: auto; /* Allows horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    margin-bottom: 25px;
+}
+
 thead {
     background-color: var(--kul-dark-blue);
     color: #ffffff;
@@ -217,7 +229,7 @@ details p, details ul {
     width: 20px;
     height: 20px;
 }
-/* KU Leuven Official 2-Tier Header */
+
 .kul-header {
     position: fixed;
     top: 0;
@@ -228,7 +240,7 @@ details p, details ul {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Top Tier (Dark Blue) */
+
 .kul-top-bar {
     background-color: var(--kul-dark-blue);
     height: 50px;
@@ -268,33 +280,7 @@ details p, details ul {
     font-weight: 600;
 }
 
-.kul-search-box {
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 2px;
-    padding: 4px 10px;
-    display: flex;
-    align-items: center;
-}
 
-.kul-search-box input {
-    background: transparent;
-    border: none;
-    color: white;
-    margin-bottom: 0;
-    padding: 4px;
-    width: 200px;
-}
-
-.kul-search-box input::placeholder {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.kul-search-box input:focus {
-    outline: none;
-    border: none;
-}
-
-/* Bottom Tier (White with blue text) */
 .kul-main-nav {
     background-color: #ffffff;
     border-bottom: 1px solid var(--kul-border);
@@ -326,13 +312,49 @@ details p, details ul {
     text-decoration: none;
 }
 
-/* Make sure the page content is pushed down far enough so the taller header doesn't cover it */
 body {
     padding-top: 140px !important;
 }
 
-/* Fix for mobile screens */
+/* mobile */
 @media (max-width: 768px) {
-    .kul-search-box { display: none; }
-    .kul-nav-list { gap: 15px; font-size: 0.9rem; }
+    .kul-search-box {
+        display: none;
+    }
+
+    .page-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .contents-sidebar {
+        width: 100%;
+        display: block;
+    }
+
+    .contents-sidebar nav {
+        border-left: none;
+        border-top: 4px solid var(--kul-sedona-blue);
+        border-radius: 6px;
+    }
+
+    .kul-main-nav {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .kul-nav-list {
+        gap: 15px;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+        padding: 0 10px;
+        justify-content: center;
+    }
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; }
+
+    body {
+        padding-top: 110px !important;
+    }
 }
