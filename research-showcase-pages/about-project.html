@@ -2,17 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About SoMAnTic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Project - SoMAnTic</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/main.css">
+
+    <style>
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tech-list li {
+            margin-bottom: 10px;
+        }
+        .tech-list strong {
+            color: var(--kul-dark-blue);
+        }
+
+        .btn-kul {
+            background-color: var(--kul-sedona-blue);
+            color: #ffffff;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+        .btn-kul:hover, .btn-kul:focus {
+            background-color: var(--kul-dark-blue);
+            color: #ffffff;
+        }
+    </style>
 </head>
 <body>
 
 <header class="kul-header">
     <div class="kul-top-bar">
         <div class="kul-logo-container"><a href="../index.html" class="kul-logo">KU LEUVEN</a></div>
-        <div class="kul-top-right">
-        </div>
+        <div class="kul-top-right"></div>
     </div>
     <nav class="kul-main-nav">
         <ul class="kul-nav-list">
@@ -26,37 +51,35 @@
     </nav>
 </header>
 
-<div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5 about-container">
 
-    <h2 class="mt-5">The project</h2>
-    <p>We are <strong>Group 7</strong>, also called <i>"Almost Belgian"</i>, a group of <a href="https://www.kuleuven.be/programmes/master-digital-humanities"> Digital Humanities </a> students at <a href="https://www.kuleuven.be/english/kuleuven/">KU Leuven</a>, taking the <i><a href="https://onderwijsaanbod.kuleuven.be/syllabi/e/G0Y11AE">Web Information Systems</a></i> course. </p>
-    <ul>
-        <li>Victor Close (r1042528) [Belgian &#x1F1E7;&#x1F1EA]</li>
-        <li>Aïcha David (r0833392) [Belgian &#x1F1E7;&#x1F1EA]</li>
-        <li>Lisa D'Hoore (r1109614) [Belgian &#x1F1E7;&#x1F1EA]</li>
-        <li>Petar Soldo (r1076709) [non-Belgian &#x1F1ED;&#x1F1F7]</li>
+    <h1 class="mb-4">The SoMAnTic Project</h1>
+
+    <p class="lead mb-5">The <strong>Social Media Analysis Toolbox (SoMAnTic)</strong> was developed as part of the <i><a href="https://onderwijsaanbod.kuleuven.be/syllabi/e/G0Y11AE">Web Information Systems</a></i> course within the Master of Digital Humanities at KU Leuven.</p>
+
+    <h2 class="mt-4">The Problem</h2>
+    <p>Social media platforms have become central to public discourse, cultural exchange, and political mobilization. However, accessing and analyzing data from Very Large Online Platforms (VLOPs) has become increasingly difficult for researchers. Due to strict data protection measures (such as the DSA) and closed APIs, researchers are often forced to work in highly restrictive Virtual Computing Environments, limiting the tools they can use and preventing them from combining datasets easily.</p>
+
+    <h2 class="mt-4">Our Solution</h2>
+    <p>SoMAnTic aims to bridge this gap. Rather than acting as a data scraper, our platform is designed to provide an accessible interface for analyzing <em>already retrieved</em> datasets. We built this tool specifically for researchers in the humanities and social sciences who may not have extensive programming backgrounds.</p>
+    <p>By offering an interactive web interface, SoMAnTic allows users to easily navigate and analyze complex data, featuring tools for demographic breakdowns, sentiment analysis, and linguistic tracking.</p>
+
+    <h2 class="mt-5">Under the Hood</h2>
+    <p>SoMAnTic is built to process and analyze social media datasets efficiently. Our analytical pipeline relies on a combination of robust technologies:</p>
+    <ul class="tech-list">
+        <li><strong>Frontend Interface:</strong> HTML5, CSS3, and Bootstrap 5 for a responsive, user-friendly experience.</li>
+        <li><strong>Data Processing:</strong> <i>[Update this: List your Python libraries here, e.g., Pandas, spaCy, NLTK, matplotlib]</i></li>
+        <li><strong>Data Sources:</strong> Extracted datasets from Very Large Online Platforms (VLOPs) and the BlueSky API.</li>
     </ul>
 
-</div>
+    <h2 class="mt-5">Open Source Code</h2>
+    <p>Transparency and reproducibility are core values of Digital Humanities research. You can view our entire codebase, project history, and methodology in our public repository.</p>
 
-<script>
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': '../research-showcase-pages/demographics.html', 'age': '../research-showcase-pages/demographics.html',
-            'linguistic': '../research-showcase-pages/linguistic-analysis.html', 'language': '../research-showcase-pages/linguistic-analysis.html',
-            'bluesky': '../research-showcase-pages/bluesky-keywords.html', 'football': '../research-showcase-pages/football-pipeline.html',
-            'guideline': '../guidelines/guidelines.html', 'dsa': '../guidelines/guidelines.html', 'about': '../research-showcase-pages/about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
-</script>
+    <a href="https://github.com/petar-soldo/WIS-SoMAnTic" target="_blank" class="btn btn-kul mt-3 mb-4">
+        View SoMAnTic on GitHub
+    </a>
+
+</div>
 
 </body>
 </html>

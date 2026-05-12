@@ -316,6 +316,21 @@ body {
     padding-top: 140px !important;
 }
 
+.team-list {
+    list-style: none; /* Removes the bullet points */
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 500px;
+}
+.team-list li {
+    background-color: var(--kul-bg-attention); /* Uses your light blue background */
+    border-left: 4px solid var(--kul-sedona-blue); /* Adds the KU Leuven accent line */
+    padding: 15px 20px;
+    border-radius: 4px;
+}
+
 /* mobile */
 @media (max-width: 768px) {
     .kul-search-box {
