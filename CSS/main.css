@@ -179,9 +179,6 @@ details p, details ul {
 }
 
 .contents-sidebar {
-    position: sticky;
-    top: 140px;
-    left: 40px;
     width: 220px;
 }
 
@@ -203,8 +200,6 @@ details p, details ul {
 .contents-sidebar ol {
     margin: 0;
     padding-left: 18px;
-    position: sticky;
-    align-self: start;
 }
 
 .contents-sidebar li {

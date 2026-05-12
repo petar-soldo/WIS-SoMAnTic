@@ -90,24 +90,5 @@
     <p>Developed for the Web Information Systems course @ KU Leuven (Academic Year 2025-2026).</p>
 </footer>
 
-<script>
-    function performSearch() {
-        const query = document.getElementById('searchInput').value.toLowerCase().trim();
-        if (!query) return;
-        const searchRoutes = {
-            'demographic': 'research-showcase-pages/demographics.html', 'age': 'research-showcase-pages/demographics.html',
-            'linguistic': 'research-showcase-pages/linguistic-analysis.html', 'language': 'research-showcase-pages/linguistic-analysis.html',
-            'bluesky': 'research-showcase-pages/bluesky-keywords.html', 'football': 'research-showcase-pages/football-pipeline.html',
-            'guideline': 'guidelines/guidelines.html', 'dsa': 'guidelines/guidelines.html', 'about': 'research-showcase-pages/about.html'
-        };
-        for (const keyword in searchRoutes) {
-            if (query.includes(keyword)) { window.location.href = searchRoutes[keyword]; return; }
-        }
-        alert('No exact modules found for: "' + query + '"\nTry searching for "demographics", "football", "bluesky", or "DSA".');
-    }
-    document.getElementById('searchInput').addEventListener('keypress', e => { if (e.key === 'Enter') performSearch(); });
-    document.getElementById('searchBtn').addEventListener('click', performSearch);
-</script>
-
 </body>
 </html>
