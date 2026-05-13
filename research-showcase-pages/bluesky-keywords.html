@@ -114,26 +114,22 @@
             const url = uri.replace('at://', 'https://bsky.app/profile/').replace('/app.bsky.feed.post/', '/post/');
 
             return `
-        <tr>
-            <td>${date}</td>
-            <td><a href="https://bsky.app/profile/${handle}" target="_blank">${displayName}<br><small>@${handle}</small></a></td>
-            <td>${text}</td>
-            <td>${likes}</td>
-            <td><a href="${url}" target="_blank">${url}</a></td>
-        </tr>`;
+                    <tr>
+                        <td>${date},<br><a href="https://bsky.app/profile/${handle}" target="_blank">${displayName}<br><small>@${handle}</small></a></td>
+                        <td>${text}</td>
+                        <td>${likes} / <a href="${url}" target="_blank">[LINK]</a></td>
+                    </tr>`;
         }).join('');
 
         document.getElementById('blueskyResults').innerHTML = `
          <table>
         <thead>
-            <tr>
-                <th>Date</th>
-                <th>Author</th>
-                <th>Text</th>
-                <th>Number of likes</th>
-                <th>Link</th>
-            </tr>
-        </thead>
+                        <tr>
+                            <th>Date & Author</th>
+                            <th>Post text</th>
+                            <th>Likes / Link</th>
+                        </tr>
+                    </thead>
         <tbody>${rows}</tbody>
     </table>`;
     }

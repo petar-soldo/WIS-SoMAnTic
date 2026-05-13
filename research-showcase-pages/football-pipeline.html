@@ -81,7 +81,8 @@
                 </select>
             </p>
             <button onclick="fetchFootballData()">Get Football Data</button>
-            <div id="result"></div>
+            <p id="resultDesc"></p>
+            <div id="resultTB"></div>
 
             <script>
                 let allPosts = [];
@@ -100,7 +101,8 @@
                     const teamName = dataTable.table[0].strTeam;
                     const teamBadge = dataTable.table[0].strBadge;
 
-                    document.getElementById('result').innerHTML = `<p>League is ${leagueName} and the team is ${teamName}</p>`;
+                    document.getElementById('resultDesc').innerHTML = `<h3>Football results</h3>
+                    In the <strong>${leagueName}</strong> the currently best ranked team is <strong>${teamName}</strong>. Here are BlueSky posts containing the word "${teamName}":`;
 
                     const identifier = document.getElementById('username').value;
                     const password = document.getElementById('password').value;
@@ -137,24 +139,20 @@
 
                         return `
                     <tr>
-                        <td>${date}</td>
-                        <td><a href="https://bsky.app/profile/${handle}" target="_blank">${displayName}<br><small>@${handle}</small></a></td>
+                        <td>${date},<br><a href="https://bsky.app/profile/${handle}" target="_blank">${displayName}<br><small>@${handle}</small></a></td>
                         <td>${text}</td>
-                        <td>${likes}</td>
-                        <td><a href="${url}" target="_blank">${url}</a></td>
+                        <td>${likes} / <a href="${url}" target="_blank">[LINK]</a></td>
                     </tr>`;
                     }).join('');
                     allPosts = posts;
 
-                    document.getElementById('result').innerHTML = `<p>In the ${leagueName} the currently best ranked team is ${teamName}</p>
+                    document.getElementById('resultTB').innerHTML = `
                      <table>
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Author</th>
-                            <th>Text</th>
-                            <th>Number of likes</th>
-                            <th>Link</th>
+                            <th>Date & Author</th>
+                            <th>Post text</th>
+                            <th>Likes / Link</th>
                         </tr>
                     </thead>
                     <tbody>${rows}</tbody>
