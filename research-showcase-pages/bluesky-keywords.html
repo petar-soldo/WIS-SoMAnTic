@@ -64,6 +64,12 @@
             <p>Select a keyword: <input type="text" id="keyword" placeholder="Enter a keyword"></p>
             <p>Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" /></p>
             <p>Type in your password: <input type="password" id="password" placeholder="Password" /></p>
+            <p>Select how you want the posts sorted:
+                <select name="sort" id="sort">
+                    <option value="latest">Latest</option>
+                    <option value="top">Top</option>
+                </select>
+            </p>
             <button onclick="searchPost()">Search BlueSky</button>
             <div id="blueskyResults"></div>
         </main>
@@ -89,7 +95,7 @@
         const params = new URLSearchParams({
             q: `${keyword}`,
             limit: 10,
-            sort: 'latest'
+            sort: `${sort}`
         });
 
         const query_resp = await fetch(`https://bsky.social/xrpc/app.bsky.feed.searchPosts?${params}`, {
