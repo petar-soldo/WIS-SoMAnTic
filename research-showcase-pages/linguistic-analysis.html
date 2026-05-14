@@ -22,30 +22,30 @@
         <aside class="contents-sidebar">
             <nav class="toc-nav">
                 <ol class="toc-list">
-                    <li><a href="../index.html">1. Home</a></li>
-                    <li><a href="../guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
                     <li>
-                        <a href="research-showcase-mainpage.html">3. Showcase</a>
+                        <a href="research-showcase-mainpage.html">Showcase</a>
                         <ol class="toc-sublist">
-                            <li><a href="bluesky-keywords.html">3.1 BlueSky</a></li>
-                            <li><a href="demographics.html">3.2 Demographics</a></li>
+                            <li><a href="bluesky-keywords.html">BlueSky</a></li>
+                            <li><a href="demographics.html">Demographics</a></li>
                             <li>
-                                <a href="linguistic-analysis.html" class="active-page">3.3 Linguistics</a>
+                                <a href="linguistic-analysis.html" class="active-page">Linguistics</a>
                                 <ol class="toc-sublist page-toc">
                                     <li><a href="#intro">- Linguistic Analysis</a></li>
                                     <li><a href="#analyze-post">- Analyze your post!</a></li>
                                 </ol>
                             </li>
-                            <li><a href="football-pipeline.html">3.4 Football</a></li>
+                            <li><a href="football-pipeline.html">Football</a></li>
                         </ol>
                     </li>
-                    <li><a href="about-project.html">4. About Project</a></li>
-                    <li><a href="about-team.html">5. About Team</a></li>
+                    <li><a href="about-project.html">About Project</a></li>
+                    <li><a href="about-team.html">About Team</a></li>
                 </ol>
             </nav>
         </aside>
 
-        <main class="main-content">
+        <main class="main-content" id="main-content">
             <h1 id="intro">Linguistic analysis of posts</h1>
             <p>It might interest some researchers to see what are the linguistic features of users' posts. We can do this in an automated way, by using a <a href="https://en.wikipedia.org/wiki/Parsing" target="_blank">parser</a>. There are many options for this task, but here we will use the <a href="https://lindat.mff.cuni.cz/services/udpipe/info.php" target="_blank">UDPipe</a>, "a trainable pipeline for tokenization, tagging, lemmatization and dependency parsing of CoNLL-U files", accessing it through its <a href="https://lindat.mff.cuni.cz/services/udpipe/api-reference.php" target="_blank">API.</a> You can test it by copying a post or simply writing a sentence in the text box below.</p>
 
@@ -65,6 +65,8 @@
             <button onclick="analyzeSent()">Analyze sentence</button>
 
             <div id="sentAnalysis"></div>
+            <p style="text-align: right"><a href="#main-content">↑ Return to the top</a></p>
+
         </main>
 
     </div>

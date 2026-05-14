@@ -22,13 +22,13 @@
         <aside class="contents-sidebar">
             <nav class="toc-nav">
                 <ol class="toc-list">
-                    <li><a href="../index.html">1. Home</a></li>
-                    <li><a href="../guidelines/guidelines.html">2. Guidelines</a></li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
                     <li>
-                        <a href="research-showcase-mainpage.html">3. Showcase</a>
+                        <a href="research-showcase-mainpage.html">Showcase</a>
                         <ol class="toc-sublist">
                             <li>
-                                <a href="bluesky-keywords.html" class="active-page">3.1 BlueSky</a>
+                                <a href="bluesky-keywords.html" class="active-page">BlueSky</a>
                                 <ol class="toc-sublist page-toc">
                                     <li><a href="#intro">- How to query BlueSky</a></li>
                                     <li><a href="#how-it-works">- How does it work?</a></li>
@@ -36,18 +36,18 @@
                                     <li><a href="#searchArea">- Search BlueSky!</a></li>
                                 </ol>
                             </li>
-                            <li><a href="demographics.html">3.2 Demographics</a></li>
-                            <li><a href="linguistic-analysis.html">3.3 Linguistics</a></li>
-                            <li><a href="football-pipeline.html">3.4 Football</a></li>
+                            <li><a href="demographics.html">Demographics</a></li>
+                            <li><a href="linguistic-analysis.html">Linguistics</a></li>
+                            <li><a href="football-pipeline.html">Football</a></li>
                         </ol>
                     </li>
-                    <li><a href="about-project.html">4. About Project</a></li>
-                    <li><a href="about-team.html">5. About Team</a></li>
+                    <li><a href="about-project.html">About Project</a></li>
+                    <li><a href="about-team.html">About Team</a></li>
                 </ol>
             </nav>
         </aside>
 
-        <main class="main-content">
+        <main class="main-content" id="main-content">
             <h1 id="intro">How to query BlueSky posts?</h1>
             <p>Hello, researcher! In this demo, you can test searching for BlueSky posts, based on keywords you find interesting.</p>
             <p>It was made to showcase how querying social media in general could look like. We are using BlueSky API to do it, because it is the most accessible (relatively) widely used social media platform today (a phenomenon you can read about more in <a href="../guidelines/guidelines.html">our guidlines.</a>) The small application itself is quite simple - you just enter a keyword you would like to find posts about, your BlueSky handle (i.e. your username) and your BlueSky password (you can generate an <a href="https://blueskyfeeds.com/faq-app-password"> app password</a> not to use your personal one) and it will return 10 most recent posts from BlueSky which contain that word, together with some metadata.</p>
@@ -71,6 +71,8 @@
             </p>
             <button onclick="searchPost()">Search BlueSky</button>
             <div id="blueskyResults"></div>
+            <p style="text-align: right"><a href="#main-content">↑ Return to the top</a></p>
+
         </main>
 
     </div>
