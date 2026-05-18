@@ -48,7 +48,9 @@
         </aside>
 
         <main class="main-content" id="main-content">
-            <h1 id="intro">How to query BlueSky posts?</h1>
+            <h1 id="intro">How to query BlueSky posts?
+                <img src="../images/bluesky-blue.svg" alt="bluesky logo" style="max-width: 5%; height: auto;">
+            </h1>
             <p>Hello, researcher! In this demo, you can test searching for BlueSky posts, based on keywords you find interesting.</p>
             <p>It was made to showcase how querying social media in general could look like. We are using BlueSky API to do it, because it is the most accessible (relatively) widely used social media platform today (a phenomenon you can read about more in <a href="../guidelines/guidelines.html">our guidelines.</a>) The small application itself is quite simple - you just enter a keyword you would like to find posts about, your BlueSky handle (i.e. your username) and your BlueSky password (you can generate an <a href="https://blueskyfeeds.com/faq-app-password"> app password</a> not to use your personal one) and it will return 10 most recent posts from BlueSky which contain that word, together with some metadata.</p>
             <p><a href="#searchArea"> Scroll down</a> to test how it works!</p>
@@ -60,10 +62,10 @@
             <p>This is a very simple and direct content analysis method. Think about events or people you are interested in or whose surrounding discourse you would like to analyze. Just type them in and see what users of BlueSky have to say about it! </p>
 
             <h1 id="searchArea">Search BlueSky!</h1>
-            <p>Select a keyword: <input type="text" id="keyword" placeholder="Enter a keyword"></p>
-            <p>Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" /></p>
-            <p>Type in your password: <input type="password" id="password" placeholder="Password" /></p>
-            <p>Select how you want the posts sorted:
+            <p><strong>Select a keyword:</strong> <input type="text" id="keyword" placeholder="Enter a keyword"></p>
+            <p><strong>Write your handle/username:</strong> <input type="text" id="username" placeholder="BlueSky handle" /></p>
+            <p><strong>Type in your password:</strong> <input type="password" id="password" placeholder="Password" /></p>
+            <p><strong>Select how you want the posts sorted:</strong>
                 <select name="sort" id="sort">
                     <option value="latest">Latest</option>
                     <option value="top">Top</option>
@@ -72,6 +74,7 @@
             <button onclick="searchPost()">Search BlueSky</button>
             <div id="blueskyResults"></div>
             <p style="text-align: right"><a href="#main-content">↑ Return to the top</a></p>
+
 
         </main>
 
@@ -125,6 +128,7 @@
         }).join('');
 
         document.getElementById('blueskyResults').innerHTML = `
+        <p>Here are the results for the keyword <i><b>${keyword}</b></i>:</p>
          <table>
         <thead>
                         <tr>

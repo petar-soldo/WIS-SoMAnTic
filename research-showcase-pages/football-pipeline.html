@@ -50,7 +50,7 @@
 
         <main class="main-content" id="main-content">
             <h1 id="intro">A complete pipeline</h1>
-            <p>Let's see how a researcher could approach researching the discourse around a specific topic on social media. We are going to see a combination of different resources to do our research. To make it more fun for us, we chose football as the topic and to make it simpler to understand we chose BlueSky as the social media.</p>
+            <p>Let's see how a researcher could approach researching the discourse around a specific topic on social media. We are going to see a combination of different resources to do our research. To make it more fun for us, we chose football (<a href="football-ranking-easteregg.html">⚽</a>) as the topic and to make it simpler to understand we chose BlueSky as the social media.</p>
 
             <h2 id="what-to-see">What are you about to see?</h2>
             <p>This small working example will find the best performing football team in a football league of your choice. It will then search BlueSky and return all the posts containing the name of the leading team, together with some metadata.</p>
@@ -59,7 +59,7 @@
             <p>Here we wanted to show you what APIs can do. By clicking the button, you first access a football API to get a list of best performing clubs in a league of your choice. Then, the best performing club is selected and automatically used as a keyword for a keyword search through a BlueSky API (using the same mechanism as in <a href="bluesky-keywords.html/#how-it-works">our Bluesky keyword search</a>. Next, if you want, you can directly feed the topmost post from the table to the sentence analysis API (same as in our <a href="linguistic-analysis.html"> linguistic analysis</a> demo). </p>
 
             <h1 id="give-it-a-try">Give it a try!</h1>
-            <p>Select a league:</p>
+            <p>Select a league:
             <select name="league" id="league">
                 <option value="4328">Premier League</option>
                 <option value="4337">Eredivisie</option>
@@ -71,6 +71,7 @@
                 <option value="4336">Σούπερ Λιγκ 1</option>
                 <option value="4359">Chinese Super League</option>
             </select>
+            </p>
             <p>Write your handle/username: <input type="text" id="username" placeholder="BlueSky handle" /></p>
             <p>Type in your password: <input type="password" id="password" placeholder="Password" /></p>
             <p>Select how you want the posts sorted:
@@ -79,7 +80,7 @@
                     <option value="top">Top</option>
                 </select>
             </p>
-            <button onclick="fetchFootballData()">Get Football Data</button>
+                <button onclick="fetchFootballData()">Get Football Data</button>
             <p id="resultDesc"></p>
             <div id="resultTB"></div>
 
