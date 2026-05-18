@@ -37,10 +37,12 @@ This project was developed by Group G7 ("Almost Belgian") for the Web Informatio
 │   └── showcase-styles.css
 ├── guidelines/                     # Static documentation and legal resources
 │   ├── DSA.pdf
-│   └── guidelines.html
-├── images/                         # Logos and visual assets
+│   ├── guidelines.html
+|   └── icons/                      # Logos
+├── images/                         # Visual assets
 ├── research-showcase-pages/        # Interactive API demonstration modules
-│   ├── about.html
+│   ├── about-project.html
+│   ├── about-team.html
 │   ├── bluesky-keywords.html
 │   ├── demographics.html
 │   ├── football-pipeline.html
