@@ -56,7 +56,7 @@
             <p>This small working example will find the best performing football team in a football league of your choice. It will then search BlueSky and return all the posts containing the name of the leading team, together with some metadata.</p>
 
             <h2 id="how-it-works">How does it work?</h2>
-            <p>Here I'll briefly explain how it works.</p>
+            <p>Here we wanted to show you what APIs can do. By clicking the button, you first access a football API to get a list of best performing clubs in a league of your choice. Then, the best performing club is selected and automatically used as a keyword for a keyword search through a BlueSky API (using the same mechanism as in <a href="bluesky-keywords.html/#how-it-works">our Bluesky keyword search</a>. Next, if you want, you can directly feed the topmost post from the table to the sentence analysis API (same as in our <a href="linguistic-analysis.html"> linguistic analysis</a> demo). </p>
 
             <h1 id="give-it-a-try">Give it a try!</h1>
             <p>Select a league:</p>
@@ -100,8 +100,13 @@
                     const teamName = dataTable.table[0].strTeam;
                     const teamBadge = dataTable.table[0].strBadge;
 
-                    document.getElementById('resultDesc').innerHTML = `<h3>Football results</h3>
-                    In the <strong>${leagueName}</strong> the currently best ranked team is <strong>${teamName}</strong>. Here are BlueSky posts containing the word "${teamName}":`;
+                    document.getElementById('resultDesc').innerHTML = `<h2>Football results</h2>
+                    <div style="text-align: center">
+                    <p>You chose the <strong>${leagueName}</strong>.</p>
+                    <img src="${leagueBadge}" class="responisve-badge">
+                    <p>Currently, the best ranked team is <strong>${teamName}</strong>.</p>
+                    <img src="${teamBadge}" class="responisve-badge">
+                    </div>`;
 
                     const identifier = document.getElementById('username').value;
                     const password = document.getElementById('password').value;
@@ -146,6 +151,7 @@
                     allPosts = posts;
 
                     document.getElementById('resultTB').innerHTML = `
+                    <p>Here are the ${sort} five BlueSky posts containing the word <i>${teamName}</i>:</p>
                      <table>
                     <thead>
                         <tr>

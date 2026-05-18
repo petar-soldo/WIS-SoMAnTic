@@ -380,6 +380,12 @@ details p, details ul {
     color: var(--kul-sedona-blue) !important;
 }
 
+.responisve-badge {
+    max-width: 20%;
+    height: auto;
+}
+
+
 @media (max-width: 768px) {
     .kul-search-box {
         display: none;
