@@ -84,6 +84,7 @@
         const identifier = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const keyword = document.getElementById('keyword').value;
+        const sort = document.getElementById('sort').value;
         const session_resp = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
