@@ -380,6 +380,24 @@ details p, details ul {
     color: var(--kul-sedona-blue) !important;
 }
 
+figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+figcaption {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.illustration {
+    width: 85%;
+    height: auto
+}
 .responisve-badge {
     max-width: 20%;
     height: auto;
