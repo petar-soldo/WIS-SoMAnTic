@@ -385,6 +385,11 @@ details p, details ul {
     height: auto;
 }
 
+.responisve-badge-small {
+    max-width: 5%;
+    height: auto;
+}
+
 
 @media (max-width: 768px) {
     .kul-search-box {

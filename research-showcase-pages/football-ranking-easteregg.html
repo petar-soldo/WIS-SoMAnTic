@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foooooootball!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/main.css">
+</head>
+<body>
+<header class="kul-header">
+    <div class="kul-top-bar">
+        <div class="kul-logo-container">
+            <a href="../index.html" class="kul-logo">SoMAnTic⚽KUL</a>
+        </div>
+    </div>
+</header>
+
+<div class="container mt-5 mb-5">
+    <div class="page-layout">
+
+        <aside class="contents-sidebar">
+            <nav class="toc-nav">
+                <ol class="toc-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../guidelines/guidelines.html">Guidelines</a></li>
+                    <li>
+                        <a href="research-showcase-mainpage.html">Showcase</a>
+                        <ol class="toc-sublist">
+                            <li><a href="bluesky-keywords.html">BlueSky</a></li>
+                            <li><a href="demographics.html">Demographics</a></li>
+                            <li><a href="linguistic-analysis.html">Linguistics</a></li>
+                            <li>
+                                <a href="football-pipeline.html" class="active-page">Football</a>
+                                <ol class="toc-sublist page-toc">
+                                    <li><a href="#intro">- A complete pipeline</a></li>
+                                    <li><a href="#what-to-see">- What to see?</a></li>
+                                    <li><a href="#how-it-works">- How does it work?</a></li>
+                                    <li><a href="#give-it-a-try">- Give it a try!</a></li>
+                                    <li><a href="#analyze-post">- Analyze first post</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li><a href="about-project.html">About Project</a></li>
+                    <li><a href="about-team.html">About Team</a></li>
+                </ol>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="main-content">
+            <h1 id="intro">We really like football</h1>
+            <p>Just for fun, cause we really like football, here's a small page that uses the football API to get latest football stats.</p>
+
+            <p>Select a league:</p>
+            <select name="league" id="league">
+                <option value="4328">Premier League</option>
+                <option value="4337">Eredivisie</option>
+                <option value="4338">Pro League</option>
+                <option value="4335">La Liga</option>
+                <option value="4332">Serie A</option>
+                <option value="4331">Bundesliga</option>
+                <option value="4629">Croatian First Football League</option>
+                <option value="4336">Σούπερ Λιγκ 1</option>
+                <option value="4359">Chinese Super League</option>
+            </select>
+            <button onclick="fetchFootballData()">Get Football Data</button>
+            <p id="resultDesc"></p>
+            <div id="resultTB"></div>
+
+            <script>
+                let allPosts = [];
+                async function fetchFootballData() {
+                    const league = document.getElementById('league').value;
+                    const apiUrlTable = `https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=${league}`;
+                    const apiUrlLeague = `https://www.thesportsdb.com/api/v1/json/123/lookupleague.php?id=${league}`;
+
+                    const responseLeague = await fetch(apiUrlLeague);
+                    const dataLeague = await responseLeague.json();
+                    const leagueName = dataLeague.leagues[0].strLeague;
+                    const leagueBadge = dataLeague.leagues[0].strBadge;
+
+                    const responseTable = await fetch(apiUrlTable);
+                    const dataTable = await responseTable.json();
+                    const standings = dataTable.table
+                    const teamName = dataTable.table[0].strTeam;
+                    const teamBadge = dataTable.table[0].strBadge;
+
+                    const rows = standings.map(team => `
+                        <tr>
+                        <td>${team.intRank}</td>
+                        <td><img src="${team.strBadge}" alt="${team.strTeam} badge" class="responisve-badge-small"> ${team.strTeam}</td>
+                        <td>${team.intPoints}</td>
+                        </tr>
+                    `).join('');
+
+                    document.getElementById('resultDesc').innerHTML = `<h2>Football results</h2>
+                    <div style="text-align: center">
+                    <p>You chose the <strong>${leagueName}</strong>.</p>
+                    <img src="${leagueBadge}" class="responisve-badge">
+                    <p>Currently, the best ranked team is <strong>${teamName}</strong>.</p>
+                    <img src="${teamBadge}" class="responisve-badge">
+                    </div>`;
+
+                    document.getElementById('resultTB').innerHTML = `
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Team</th>
+                                <th>Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>${rows}</tbody>
+
+                    `}
+            </script>
+
+
+        </main>
+
+    </div>
+</div>
+<footer class="footer">
+    <p>Developed for the Web Information Systems course @ KU Leuven (Academic Year 2025-2026).</p>
+</footer>
+</body>
+</html>
