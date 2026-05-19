@@ -74,6 +74,7 @@
 
 <script>
     let analysisRows = [];
+    let jsonUD = [];
     function escapeHtml(text) {
         return String(text)
             .replace(/&/g, '&amp;')
@@ -113,6 +114,7 @@
             const response = await fetch(`https://lindat.mff.cuni.cz/services/udpipe/api/process?model=${model}&tokenizer&tagger&parser&data=${encodeURIComponent(sentence)}`);
             const data = await response.json();
             const conllu = data.result;
+            jsonUD = JSON.stringify(data, null, 2);
 
             const lines = conllu.split('\n');
             const rows = [];
@@ -164,15 +166,25 @@
                         </tbody>
                     </table>
                     </div>
-                <h3>Take the data</h3>
-                <p>You can also download this table as a CSV:</p>
+                <details>
+                <summary>Take the data!</summary>
+                <p>You can also download this table as a CSV or view a raw JSON response:</p>
                 <br>
                 <button onclick="downloadAnalysisCSV()">Download analysis CSV</button>
+                    <details>
+                        <summary>View raw JSON</summary>
+                        <pre>${jsonUD}</pre>
+                        <button onclick="copyJSON()">Copy JSON</button>
+                </details>
+                </details>
 
             `;
         } catch (error) {
             document.getElementById('sentAnalysis').innerHTML = `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;
         }
+    }
+    function copyJSON() {
+        navigator.clipboard.writeText(jsonUD),then(() => alert('Copied!'));
     }
 </script>
 <footer class="footer">
