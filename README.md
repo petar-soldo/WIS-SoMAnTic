@@ -33,8 +33,7 @@ This project was developed by Group G7 ("Almost Belgian") for the Web Informatio
 ```text
 ./
 ├── CSS/                            # Global styling
-│   ├── main.css
-│   └── showcase-styles.css
+│   └── main.css
 ├── guidelines/                     # Static documentation and legal resources
 │   ├── DSA.pdf
 │   ├── guidelines.html
