@@ -82,7 +82,9 @@
 </div>
 
 <script>
-    // Bluesky API Logic
+    let searchResult = [];
+    let JSONresults = [];
+
     async function searchPost() {
         const identifier = document.getElementById('username').value;
         const password = document.getElementById('password').value;
@@ -109,6 +111,16 @@
         });
         const dataQ = await query_resp.json();
         const posts = dataQ.posts || [];
+        JSONresults = JSON.stringify(dataQ, null, 2)
+
+        searchResult = posts.map(p => ({
+            date: new Date(p.record?.createdAt).toLocaleDateString(),
+            handle: p.author?.handle ?? '',
+            displayName: p.author?.displayName ?? '',
+            text: p.record?.text ?? '',
+            likes: p.likeCount ?? 0,
+            url: (p.uri ?? '').replace('at://', 'https://bsky.app/profile/').replace('/app.bsky.feed.post/', '/post/')
+        }));
 
         const rows = posts.map(p => {
             const date = new Date(p.record?.createdAt).toLocaleDateString();
@@ -138,8 +150,51 @@
                         </tr>
                     </thead>
         <tbody>${rows}</tbody>
-    </table>`;
+    </table>
+
+    <h1>Want the data?</h1>
+    <p>Just above, the data we got from the APIs was processed so it looks nice on our webpage. If you want to keep the data for further analysis or just playing around, you can now acces it.</p>
+
+    <p>You can <strong>download</strong> this data as a <strong>CSV file</strong>:</p>
+    <button onclick="downloadCSV()">Download as CSV</button>
+
+    <p>You can also <strong>view and copy</strong> the original <strong>JSON file</strong></p>
+    <details>
+        <summary>View raw JSON</summary>
+        <pre>${JSONresults}</pre>
+        <button onclick="copyJSON()">Copy JSON</button>
+    </details>`;
     }
+
+    function downloadCSV() {
+        const keyword = document.getElementById('keyword').value; // read from input
+        const headers = ['Date', 'Handle', 'Display Name', 'Text', 'Likes', 'URL'];
+
+        const csvRows = searchResult.map(p => [  // fixed: was currentPosts
+            p.date,
+            p.handle,
+            p.displayName,
+            p.text,
+            p.likes,
+            p.url
+        ].map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','));
+
+        const csvContent = [headers.join(','), ...csvRows].join('\n');
+        const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `bluesky_${keyword}_${new Date().toISOString().slice(0, 10)}.csv`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+
+    }
+    function copyJSON() {
+            navigator.clipboard.writeText
+            (JSONresults).then(() => alert('Copied!'));
+    }
+
+
 </script>
 <footer class="footer">
     <p>Developed for the Web Information Systems course @ KU Leuven (Academic Year 2025-2026).</p>

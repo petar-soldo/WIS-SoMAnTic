@@ -86,6 +86,7 @@
 
             <script>
                 let allPosts = [];
+                let JSONresults= [];
                 async function fetchFootballData() {
                     const league = document.getElementById('league').value;
                     const apiUrlTable = `https://www.thesportsdb.com/api/v1/json/123/lookuptable.php?l=${league}`;
@@ -104,9 +105,9 @@
                     document.getElementById('resultDesc').innerHTML = `<h2>Football results</h2>
                     <div style="text-align: center">
                     <p>You chose the <strong>${leagueName}</strong>.</p>
-                    <img src="${leagueBadge}" class="responisve-badge">
+                    <img src="${leagueBadge}" alt="league badge" class="responisve-badge">
                     <p>Currently, the best ranked team is <strong>${teamName}</strong>.</p>
-                    <img src="${teamBadge}" class="responisve-badge">
+                    <img src="${teamBadge}" alt="team badge" class="responisve-badge">
                     </div>`;
 
                     const identifier = document.getElementById('username').value;
@@ -132,6 +133,8 @@
                     });
                     const dataQ = await query_resp.json();
                     const posts = dataQ.posts || [];
+                    JSONresults = JSON.stringify(dataQ, null, 2)
+
 
                     const rows = posts.map(p => {
                         const date = new Date(p.record?.createdAt).toLocaleDateString();
@@ -162,8 +165,48 @@
                         </tr>
                     </thead>
                     <tbody>${rows}</tbody>
-                </table>`;
+                </table>
+                <h3>Want the data?</h3>
+    <p>You can <strong>download</strong> this data as a <strong>CSV file</strong>:</p>
+    <button onclick="downloadCSV()">Download as CSV</button>
+
+    <p>You can also <strong>view and copy</strong> the original <strong>JSON file</strong></p>
+    <details>
+        <summary>View raw JSON</summary>
+        <pre>${JSONresults}</pre>
+        <button onclick="copyJSON()">Copy JSON</button>
+    </details>`;
                 }
+
+                function downloadCSV() {
+                    const keyword = document.getElementById('keyword').value; // read from input
+                    const headers = ['Date', 'Handle', 'Display Name', 'Text', 'Likes', 'URL'];
+
+                    const csvRows = searchResult.map(p => [  // fixed: was currentPosts
+                        p.date,
+                        p.handle,
+                        p.displayName,
+                        p.text,
+                        p.likes,
+                        p.url
+                    ].map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','));
+
+                    const csvContent = [headers.join(','), ...csvRows].join('\n');
+                    const blob = new Blob([csvContent], {type: 'text/csv;charset=utf-8;'});
+
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = `bluesky_${keyword}_${new Date().toISOString().slice(0, 10)}.csv`;
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+
+                }
+                function copyJSON() {
+                    navigator.clipboard.writeText
+                    (JSONresults).then(() => alert('Copied!'));
+                }
+
+
             </script>
 
             <h2 id="analyze-post">Analyze the first post</h2>
@@ -181,6 +224,8 @@
             <div id="sentAnalysis"></div>
 
             <script>
+                let analysisRows = [];
+
                 function escapeHtml(text) {
                     return String(text)
                         .replace(/&/g, '&amp;')
@@ -189,6 +234,24 @@
                         .replace(/"/g, '&quot;')
                         .replace(/'/g, '&#039;');
                 }
+
+                function downloadAnalysisCSV() {
+                    const headers = ['ID', 'FORM', 'LEMMA', 'UPOS', 'XPOS', 'FEATS', 'HEAD', 'DEPREL', 'DEPS', 'MISC'];
+
+                    const csvRows = analysisRows.map(row =>
+                        row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+                    );
+
+                    const csvContent = [headers.join(','), ...csvRows].join('\n');
+                    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = `analysis_sentence.csv`;
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                }
+
                 async function analyzeSent() {
                     const firstPost = allPosts[0];
                     const postText = firstPost?.record?.text;
@@ -216,6 +279,8 @@
                                 rows.push(cols);
                             }
                         }
+
+                        analysisRows = rows;
 
                         document.getElementById('sentAnalysis').innerHTML = `
                             <div style="overflow-x: auto;">
@@ -252,6 +317,10 @@
                                     </tbody>
                                 </table>
                             </div>
+                <h3>Take the data</h3>
+                <p>You can also download this table as a CSV:</p>
+                <br>
+                <button onclick="downloadAnalysisCSV()">Download analysis CSV</button>
                         `;
                     } catch (error) {
                         document.getElementById('sentAnalysis').innerHTML = `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;

@@ -127,6 +127,16 @@ button:hover, button:focus {
     background-color: var(--kul-dark-blue);
 }
 
+details pre {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;       /* horizontal scroll for long lines */
+    max-height: 400px;      /* cap height with vertical scroll */
+    overflow-y: auto;
+    font-size: 0.85rem;
+}
+
 table {
     width: 100%;
     border-collapse: collapse;

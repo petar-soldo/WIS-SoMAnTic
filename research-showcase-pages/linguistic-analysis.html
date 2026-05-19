@@ -73,6 +73,7 @@
 </div>
 
 <script>
+    let analysisRows = [];
     function escapeHtml(text) {
         return String(text)
             .replace(/&/g, '&amp;')
@@ -80,6 +81,23 @@
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
+    }
+
+    function downloadAnalysisCSV() {
+        const headers = ['ID', 'FORM', 'LEMMA', 'UPOS', 'XPOS', 'FEATS', 'HEAD', 'DEPREL', 'DEPS', 'MISC'];
+
+        const csvRows = analysisRows.map(row =>
+            row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')
+        );
+
+        const csvContent = [headers.join(','), ...csvRows].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `analysis_sentence.csv`;
+        link.click();
+        URL.revokeObjectURL(link.href);
     }
 
     async function analyzeSent() {
@@ -98,6 +116,7 @@
 
             const lines = conllu.split('\n');
             const rows = [];
+            analysisRows = rows;
 
             for (const line of lines) {
                 const trimmed = line.trim();
@@ -144,7 +163,12 @@
                             `).join('')}
                         </tbody>
                     </table>
-                </div>
+                    </div>
+                <h3>Take the data</h3>
+                <p>You can also download this table as a CSV:</p>
+                <br>
+                <button onclick="downloadAnalysisCSV()">Download analysis CSV</button>
+
             `;
         } catch (error) {
             document.getElementById('sentAnalysis').innerHTML = `<p>Error analyzing the sentence: ${escapeHtml(error.message)}</p>`;
